@@ -1,9 +1,9 @@
 {
-    "entrance": {
+    "Union Station": {
       "name": "Union Station",
       "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
       "exits": {
-        "north east": "TMU Station, Formally Dundas",
+        "north east": "TMU station",
         "north west": "Museum station"
       },
       "items": [
@@ -14,18 +14,15 @@
         }
       ]
     },
-    "TMU station": {
-      "name": "TMU Station, Formally Dundas",
+    "TMU Station": {
+      "name": "TMU Station",
       "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
       "exits": {
-        "south west": "entrance"
+        "south west": "Union station",
+        "north": "Bloor-Yonge station"
       },
       "items": []
-    },
-      "Vaughan Metropolitan Centre": {
-      "name": "Vaughan Metropolitan Centre",
-      "description": "Light floods the platform, bathing fresh concrete in a pale glow. Crowds bustle through the wide open concourse, their voices echoing up into the vaulted ceiling — the furthest reach of the TTC, planted firmly in York Region.",
-
-    //
+    }
+    
   }
   
