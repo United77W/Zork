@@ -3,8 +3,8 @@
       "name": "Union Station",
       "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
       "exits": {
-        "north east": "TMU Station, Formally Dundas",
-        "north west": "Museum station"
+        "northeast": "TMU station"
+        
       },
       "items": [
         {
@@ -16,12 +16,12 @@
     },
     "TMU station": {
       "name": "TMU Station, Formally Dundas",
-      "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
+      "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby. Union Station is South. Bloor-Yonge is North.",
       "exits": {
-        "south west": "entrance"
+        "south": "entrance"
       },
       "items": []
     }
-    //
+    
   }
   
