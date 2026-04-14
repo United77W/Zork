@@ -21,7 +21,11 @@
         "south west": "entrance"
       },
       "items": []
-    }
+    },
+      "Vaughan Metropolitan Centre": {
+      "name": "Vaughan Metropolitan Centre",
+      "description": "Light floods the platform, bathing fresh concrete in a pale glow. Crowds bustle through the wide open concourse, their voices echoing up into the vaulted ceiling — the furthest reach of the TTC, planted firmly in York Region.",
+
     //
   }
   
