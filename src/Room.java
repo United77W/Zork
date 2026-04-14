@@ -15,7 +15,7 @@ public class Room {
         this.exits = exits;
         this.items = items;
     }
-
+    //
     public String getId() {
         return id;
     }

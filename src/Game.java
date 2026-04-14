@@ -12,7 +12,7 @@ public class Game {
         player = new Player("entrance");
         commandParser = new CommandParser();
     }
-
+    //
     public void start() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the Text Adventure Game!");

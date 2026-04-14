@@ -13,7 +13,7 @@ public class Player {
     public String getCurrentRoomId() {
         return currentRoomId;
     }
-
+        //
     public void setCurrentRoomId(String roomId) {
         this.currentRoomId = roomId;
     }
