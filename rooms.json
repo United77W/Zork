@@ -1,15 +1,16 @@
 {
     "entrance": {
-      "name": "Entrance Hall",
-      "description": "You are in a grand entrance hall. A door leads north.",
+      "name": "Union Station",
+      "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
       "exits": {
-        "north": "library"
+        "north east": "TMU station",
+        "north west": "Museum station"
       },
       "items": [
         {
-          "id": "key1",
-          "name": "Key",
-          "description": "A small rusty key."
+          "id": "PRESTO_card_1",
+          "name": "PRESTO CARD",
+          "description": "A small black card used to pay for transit. Funds are limited."
         }
       ]
     },
