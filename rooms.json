@@ -1,10 +1,10 @@
 {
-  "Union": {
+  "Union Station": {
     "name": "Union Station",
     "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
     "exits": {
-      "north east": "TMU",
-      "north west": "Museum"
+      "north east": "TMU Station",
+      "north west": "Museum Station"
     },
     "items": [
       {
@@ -14,12 +14,12 @@
       }
     ]
   },
-  "TMU": {
+  "TMU Station": {
     "name": "TMU Station",
     "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
     "exits": {
-      "south west": "Union",
-      "north": "Bloor-Yonge"
+      "south west": "Union Station",
+      "north": "Bloor-Yonge Station"
     },
     "items": [
       {
@@ -34,32 +34,32 @@
       }
     ]
   },
-  "Bloor-Yonge": {
+  "Bloor-Yonge Station": {
     "name": "Bloor-Yonge Station",
     "description": "You are currently in Canada Busiest Subway Station. From here you can connect to Line 2 Bloor-Danforth. East to Kennedy and West to Kipling.",
     "exits": {
-      "south": "TMU",
-      "north": "Eglinton",
-      "east": "Broadview",
-      "west": "Dundas West"
+      "south": "TMU Station",
+      "north": "Eglinton Station",
+      "east": "Broadview Station",
+      "west": "Dundas West Station"
     },
   },
-  "Eglinton": {
+  "Eglinton Station": {
     "name": "Eglinton Station",
     "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
     "exits": {
-      "south": "Bloor-Yonge",
-      "north": "Sheppard-Yonge",
-      "east": "Don Valley",
-      "west": "Cedarvale"
+      "south": "Bloor-Yonge Station",
+      "north": "Sheppard-Yonge Station",
+      "east": "Don Valley Station",
+      "west": "Cedarvale Station"
     }
   },
-  "Museum": {
+  "Museum Station": {
     "name": "Museum Station",
     "description": "You are in Museum Station, a quiet stop on the TTC line. There are artifacts and totem poles on display, and the station has a calm atmosphere.",
     "exits": {
-      "north": "Cedarvale",
-      "south east": "Union"
+      "north": "Cedarvale Station",
+      "south east": "Union Station"
     },
     "items": [
       {
@@ -69,19 +69,19 @@
       }
     ]
   },
-  "Kipling": {
+  "Kipling Station": {
     "name": "Kipling Station",
     "description": "You are in Kipling Station, the station is quiet and the air is filled with the scent of fresh coffee from a nearby café. The station is a hub for commuters heading to the airport and the suburbs.",
     "exits": {
-      "east": "Dundas West"
+      "east": "Dundas West Station"
     }
   },
-  "Dundas West": {
+  "Dundas West Station": {
     "name": "Dundas West Station",
     "description": "You are in Dundas West Station, a busy stop on the TTC line. The station is known for its vibrant atmosphere and diverse crowd.",
     "exits": {
-      "east": "Bloor-Yonge",
-      "west": "Kipling"
+      "east": "Bloor-Yonge Station",
+      "west": "Kipling Station"
     },
     "items": [
       {
@@ -90,6 +90,80 @@
         "description": "A sturdy crowbar that could be useful for prying open stuck objects."
       }
     ]
+  },
+
+  "Broadview Station": {
+    "name": "Broadview Station",
+    "description": "You are in Broadview Station, lights flicker as a crackhead roams the hallway.",
+    "exits": {
+      "west": "Bloor-Yonge Station",
+      "east": "Pape Station",
+      "north east": "Don Valley Station"
+    }
+  },
+
+  "Pape Station": {
+    "name": "Pape Station",
+    "description": "You are in Pape Station, a statue of Mr. Pape stands in the middle of the station.",
+    "exits": {
+      "east": "Main Street Station",
+      "west": "Broadview Station"
+    }
+  },
+
+  "Main Street Station": {
+    "name": "Main Street Station",
+    "description": "You are in Main Street Station, you're almost at the end of line 2.",
+    "exits": {
+      "west": "Pape Station",
+      "north east": "Kennedy Station"
+    }
+  },
+
+  "Kennedy Station": {
+    "name": "Kennedy Station",
+    "description": "You are in Kennedy Station, the terminal station on Line 2, and line 5. You hear the noise of a nearby power station...",
+    "exits": {
+      "east": "Power Station",
+      "south west": "Main Street Station",
+      "west": "Don Valley Station"
+    },
+    "items": [
+      {
+        "id": "TTC_card_1",
+        "name": "TTC Card",
+        "description": "This key unlocks restricted areas that are limited to TTC employees."
+      }
+    ]
+},
+
+  "Don Valley Station": {
+    "name": "Don Valley Station",
+    "description": "You are in Don Valley Station, the station is dimly lit and the air is filled with a faint hum of machinery.",
+    "exits": {
+      "east": "Kennedy Station",
+      "north": "Don Mills Station",
+      "west": "Eglinton Station"
+    },
+    "items": [
+      {
+        "id": "Flashlight_1",
+        "name": "Flashlight",
+        "description": "A reliable flashlight that can illuminate dark areas."
+      }
+    ]
+  },
+
+  "Cedarvale Station": {
+    "name": "Cedarvale Station",
+    "description": "You are in Cedarvale Station, the station is a hub for commuters heading to the suburbs.",
+    "exits": {
+      "east": "Eglinton Station",
+      "south": "Museum Station",
+      "west": "Mount Dennis Station",
+      "north": "Finch West Station"
+
+    }
   }
 }
   
