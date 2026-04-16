@@ -42,7 +42,7 @@
       "north": "Eglinton Station",
       "east": "Broadview Station",
       "west": "Dundas West Station"
-    },
+    }
   },
   "Eglinton Station": {
     "name": "Eglinton Station",
@@ -52,6 +52,29 @@
       "north": "Sheppard-Yonge Station",
       "east": "Don Valley Station",
       "west": "Cedarvale Station"
+    }
+  },
+  "Sheppard-Yonge Station": {
+    "name": "Sheppard-Yonge Station",
+    "description": "You are currently located at Sheppard Yonge. From here you can connect to Line 4 Sheppard.",
+    "exits": {
+      "east": "Don Mills Station",
+      "south": "Eglinton Station",
+      "north": "Finch Station"
+    }
+  },
+  "Finch Station": {
+    "name": "Finch Station",
+    "description": "You are in Finch Station, the station is a hub for commuters heading to the York Region beyond Toronto's border.",
+    "exits": {
+      "south": "Shppard-Yonge Station"
+    }
+  },
+  "Don Mills Station": {
+    "name": "Don Mills Station",
+    "description": "You are in Don Mills Station, the station is a hub for commuters heading to Scarbrough.",
+    "exits": {
+      "west": "Sheppard-Yonge Station"
     }
   },
   "Museum Station": {
@@ -91,7 +114,6 @@
       }
     ]
   },
-
   "Broadview Station": {
     "name": "Broadview Station",
     "description": "You are in Broadview Station, lights flicker as a crackhead roams the hallway.",
@@ -101,7 +123,6 @@
       "north east": "Don Valley Station"
     }
   },
-
   "Pape Station": {
     "name": "Pape Station",
     "description": "You are in Pape Station, a statue of Mr. Pape stands in the middle of the station.",
@@ -110,7 +131,6 @@
       "west": "Broadview Station"
     }
   },
-
   "Main Street Station": {
     "name": "Main Street Station",
     "description": "You are in Main Street Station, you're almost at the end of line 2.",
@@ -119,7 +139,6 @@
       "north east": "Kennedy Station"
     }
   },
-
   "Kennedy Station": {
     "name": "Kennedy Station",
     "description": "You are in Kennedy Station, the terminal station on Line 2, and line 5. You hear the noise of a nearby power station...",
@@ -135,8 +154,7 @@
         "description": "This key unlocks restricted areas that are limited to TTC employees."
       }
     ]
-},
-
+  },
   "Don Valley Station": {
     "name": "Don Valley Station",
     "description": "You are in Don Valley Station, the station is dimly lit and the air is filled with a faint hum of machinery.",
@@ -153,7 +171,6 @@
       }
     ]
   },
-
   "Cedarvale Station": {
     "name": "Cedarvale Station",
     "description": "You are in Cedarvale Station, the station is a hub for commuters heading to the suburbs.",
@@ -162,8 +179,44 @@
       "south": "Museum Station",
       "west": "Mount Dennis Station",
       "north": "Finch West Station"
-
+    }
+  },
+  "Mount Dennis Station": {
+    "name": "Mount Dennis Station",
+    "description": "You are in Mount Dennis Station, the station is a hub for commuters heading to the airport and beyond Toronto's border.",
+    "exits": {
+      "east": "Cedarvale Station"
+    }
+  },
+  "Finch West Station": {
+    "name": "Finch West Station",
+    "description": "You are currently in Finch West Station. A big interchange station consist of Line 1 and Line 6. From here you can go beyond Toronto's border, into York Region.",
+    "exits": {
+      "south": "Cedarvale Station",
+      "west": "Jane and Finch Station",
+      "north": "Vanghan Metropolitan Centre Station"
+    }
+  },
+  "Vanghan Metropolitan Centre Station": {
+    "name": "Vanghan Metropolitan Centre Station",
+    "description": "You are currently in the western Terminal of Line 1 Yonge University. VMC station is located in York Region. This station is one of the first TTC stations in York Region.",
+    "exits": {
+      "south": "Finch West Station"
+    }
+  },
+  "Jane and Finch Station": {
+    "name": "Jane and Finch Station",
+    "description": "You are currently located in a very well known area in Toronto.",
+    "exits": {
+      "east": "Finch West Station",
+      "west": "Humber College Station"
+    }
+  },
+  "Humber College Station": {
+    "name": "Humber College Station",
+    "description": "You are currently located at Humber College Station. From here you can connect to TTC, YRT, GO, as well as MiWay.",
+    "exits": {
+      "east": "Jane and Finch Station"
     }
   }
 }
-  
