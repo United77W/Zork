@@ -43,14 +43,14 @@
       "east": "Broadview Station",
       "west": "Spadina Station"
     },
-    "Eglinton": {
-      "name": "Eglinton Station",
-      "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
-      "exits": {
-        "south": "Bloor-Yonge Station",
-        "north": "Sheppard-Yonge",
-        "east": "Don Valley",
-        "west": "Cedarvale"
+  "Eglinton": {
+    "name": "Eglinton Station",
+    "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
+    "exits": {
+      "south": "Bloor-Yonge Station",
+      "north": "Sheppard-Yonge",
+      "east": "Don Valley",
+      "west": "Cedarvale"
       }
     }
   }
