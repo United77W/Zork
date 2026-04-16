@@ -4,5 +4,4 @@ public class Main {
         game.start();
     }
 
-    //comment
 }

@@ -1,82 +1,95 @@
 {
-    "Union": {
-      "name": "Union Station",
-      "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
-      "exits": {
-        "north east": "TMU station",
-        "north west": "Museum station"
-      },
-      "items": [
-        {
-          "id": "PRESTO_card_1",
-          "name": "PRESTO CARD",
-          "description": "A small black card used to pay for transit. Funds are limited."
-        }
-      ]
+  "Union": {
+    "name": "Union Station",
+    "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
+    "exits": {
+      "north east": "TMU",
+      "north west": "Museum"
     },
-
-    "TMU": {
-      "name": "TMU Station",
-      "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
-      "exits": {
-        "south west": "Union station",
-        "north": "Bloor-Yonge station"
-      },
-      "items": [
-        {
-          "id": "TMU_ID_card",
-          "name": "TMU ID CARD",
-          "description": "Your student ID card for TMU."
-        },
-        {
-          "id": "Screwdriver",
-          "name": "Screwdriver",
-          "description": "A small tool that could be useful in the future."
-        }
-      ]
-    },
-
-    "Museum": {
-      "name": "Museum Station",
-      "description": "You are in Museum Station, a quiet stop on the TTC line. There are artifacts and totem poles on display, and the station has a calm atmosphere.",
-      "exits": {
-        "north": "Cerdarvale station",
-        "south east": "Union station"
-      },
-      "items": [
-        {
-          "id": "Artifact_1",
-          "name": "Artifact",
-          "description": "An ancient artifact on display at the museum."
-        }
-      ]
-    },
-
-    "Kipling": {
-      "name": "Kipling Station",
-      "description": "You are in Kipling Station, the station is quiet and the air is filled with the scent of fresh coffee from a nearby café. The station is a hub for commuters heading to the airport and the suburbs.",
-      "exits": {
-        "east": "Dundas West station"
+    "items": [
+      {
+        "id": "PRESTO_card_1",
+        "name": "PRESTO CARD",
+        "description": "A small black card used to pay for transit. Funds are limited."
       }
-  
+    ]
+  },
+  "TMU": {
+    "name": "TMU Station",
+    "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
+    "exits": {
+      "south west": "Union",
+      "north": "Bloor-Yonge"
     },
-
-    "Dundas West": {
-      "name": "Dundas West Station",
-      "description": "You are in Dundas West Station, a busy stop on the TTC line. The station is known for its vibrant atmosphere and diverse crowd.",
-      "exits": {
-        "east": "Bloor-Yonge station",
-        "south east": "Union station"
+    "items": [
+      {
+        "id": "TMU_ID_card",
+        "name": "TMU ID CARD",
+        "description": "Your student ID card for TMU."
       },
-      "items": [
-        {
-          "id": "Crowbar_1",
-          "name": "Crowbar",
-          "description": "A sturdy crowbar that could be useful for prying open stuck objects."
-        }
-      ]
+      {
+        "id": "Screwdriver",
+        "name": "Screwdriver",
+        "description": "A small tool that could be useful in the future."
+      }
+    ]
+  },
+  "Bloor-Yonge": {
+    "name": "Bloor-Yonge Station",
+    "description": "You are currently in Canada Busiest Subway Station. From here you can connect to Line 2 Bloor-Danforth. East to Kennedy and West to Kipling.",
+    "exits": {
+      "south": "TMU",
+      "north": "Eglinton",
+      "east": "Broadview",
+      "west": "Dundas West"
     },
-
-    
+  },
+  "Eglinton": {
+    "name": "Eglinton Station",
+    "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
+    "exits": {
+      "south": "Bloor-Yonge",
+      "north": "Sheppard-Yonge",
+      "east": "Don Valley",
+      "west": "Cedarvale"
+    }
+  },
+  "Museum": {
+    "name": "Museum Station",
+    "description": "You are in Museum Station, a quiet stop on the TTC line. There are artifacts and totem poles on display, and the station has a calm atmosphere.",
+    "exits": {
+      "north": "Cedarvale",
+      "south east": "Union"
+    },
+    "items": [
+      {
+        "id": "Artifact_1",
+        "name": "Artifact",
+        "description": "An ancient artifact on display at the museum."
+      }
+    ]
+  },
+  "Kipling": {
+    "name": "Kipling Station",
+    "description": "You are in Kipling Station, the station is quiet and the air is filled with the scent of fresh coffee from a nearby café. The station is a hub for commuters heading to the airport and the suburbs.",
+    "exits": {
+      "east": "Dundas West"
+    }
+  },
+  "Dundas West": {
+    "name": "Dundas West Station",
+    "description": "You are in Dundas West Station, a busy stop on the TTC line. The station is known for its vibrant atmosphere and diverse crowd.",
+    "exits": {
+      "east": "Bloor-Yonge",
+      "west": "Kipling"
+    },
+    "items": [
+      {
+        "id": "Crowbar_1",
+        "name": "Crowbar",
+        "description": "A sturdy crowbar that could be useful for prying open stuck objects."
+      }
+    ]
   }
+}
   
