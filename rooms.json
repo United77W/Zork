@@ -36,7 +36,7 @@
   },
   "Bloor-Yonge Station": {
     "name": "Bloor-Yonge Station",
-    "description": "You are currently in Canada Busiest Subway Station. From here you can connect to Line 2 Bloor-Danforth. East to Kennedy and West to Kipling.",
+    "description": "You are currently in Canadas busiest subway station. From here you can connect to Line 2 Bloor-Danforth. East to Kennedy and West to Kipling.",
     "exits": {
       "south": "TMU Station",
       "north": "Eglinton Station",
@@ -52,6 +52,7 @@
       "north": "Sheppard-Yonge Station",
       "east": "Don Valley Station",
       "west": "Cedarvale Station"
+
     }
   },
   "Sheppard-Yonge Station": {
@@ -74,7 +75,8 @@
     "name": "Don Mills Station",
     "description": "You are in Don Mills Station, the station is a hub for commuters heading to Scarbrough.",
     "exits": {
-      "west": "Sheppard-Yonge Station"
+      "west": "Sheppard-Yonge Station",
+      "south": "Don Valley Station"
     }
   },
   "Museum Station": {
@@ -120,7 +122,7 @@
     "exits": {
       "west": "Bloor-Yonge Station",
       "east": "Pape Station",
-      "north east": "Don Valley Station"
+      "northeast": "Don Valley Station"
     }
   },
   "Pape Station": {
@@ -144,7 +146,7 @@
     "description": "You are in Kennedy Station, the terminal station on Line 2, and line 5. You hear the noise of a nearby power station...",
     "exits": {
       "east": "Power Station",
-      "south west": "Main Street Station",
+      "southwest": "Main Street Station",
       "west": "Don Valley Station"
     },
     "items": [
@@ -197,8 +199,8 @@
       "north": "Vanghan Metropolitan Centre Station"
     }
   },
-  "Vanghan Metropolitan Centre Station": {
-    "name": "Vanghan Metropolitan Centre Station",
+  "Vaughan Metropolitan Centre Station": {
+    "name": "Vaughan Metropolitan Centre Station",
     "description": "You are currently in the western Terminal of Line 1 Yonge University. VMC station is located in York Region. This station is one of the first TTC stations in York Region.",
     "exits": {
       "south": "Finch West Station"
