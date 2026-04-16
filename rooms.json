@@ -1,5 +1,5 @@
 {
-    "Union Station": {
+    "Union": {
       "name": "Union Station",
       "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
       "exits": {
@@ -14,7 +14,8 @@
         }
       ]
     },
-    "TMU Station": {
+
+    "TMU": {
       "name": "TMU Station",
       "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
       "exits": {
@@ -33,7 +34,49 @@
           "description": "A small tool that could be useful in the future."
         }
       ]
-    }
+    },
+
+    "Museum": {
+      "name": "Museum Station",
+      "description": "You are in Museum Station, a quiet stop on the TTC line. There are artifacts and totem poles on display, and the station has a calm atmosphere.",
+      "exits": {
+        "north": "Cerdarvale station",
+        "south east": "Union station"
+      },
+      "items": [
+        {
+          "id": "Artifact_1",
+          "name": "Artifact",
+          "description": "An ancient artifact on display at the museum."
+        }
+      ]
+    },
+
+    "Kipling": {
+      "name": "Kipling Station",
+      "description": "You are in Kipling Station, the station is quiet and the air is filled with the scent of fresh coffee from a nearby café. The station is a hub for commuters heading to the airport and the suburbs.",
+      "exits": {
+        "east": "Dundas West station"
+      }
+  
+    },
+
+    "Dundas West": {
+      "name": "Dundas West Station",
+      "description": "You are in Dundas West Station, a busy stop on the TTC line. The station is known for its vibrant atmosphere and diverse crowd.",
+      "exits": {
+        "east": "Bloor-Yonge station",
+        "south east": "Union station"
+      },
+      "items": [
+        {
+          "id": "Crowbar_1",
+          "name": "Crowbar",
+          "description": "A sturdy crowbar that could be useful for prying open stuck objects."
+        }
+      ]
+    },
+
     
   }
   
