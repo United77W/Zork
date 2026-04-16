@@ -4,10 +4,14 @@ import java.util.List;
 public class Player {
     private String currentRoomId;
     private List<Item> inventory;
+    private double prestoBalance;
+    private double cash;
 
     public Player(String startingRoomId) {
         this.currentRoomId = startingRoomId;
         this.inventory = new ArrayList<>();
+        this.prestoBalance = 0.00;
+        this.cash = 10.00;
     }
 
     public String getCurrentRoomId() {
