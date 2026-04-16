@@ -1,39 +1,57 @@
 {
-    "Union Station": {
-      "name": "Union Station",
-      "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
-      "exits": {
-        "north east": "TMU station",
-        "north west": "Museum station"
-      },
-      "items": [
-        {
-          "id": "PRESTO_card_1",
-          "name": "PRESTO CARD",
-          "description": "A small black card used to pay for transit. Funds are limited."
-        }
-      ]
+  "Union Station": {
+    "name": "Union Station",
+    "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
+    "exits": {
+      "north east": "TMU Station",
+      "north west": "Museum Station"
     },
-    "TMU Station": {
-      "name": "TMU Station",
-      "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
-      "exits": {
-        "south west": "Union station",
-        "north": "Bloor-Yonge station"
+    "items": [
+      {
+        "id": "PRESTO_card_1",
+        "name": "PRESTO CARD",
+        "description": "A small black card used to pay for transit. Funds are limited."
+      }
+    ]
+  },
+  "TMU Station": {
+    "name": "TMU Station",
+    "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
+    "exits": {
+      "south west": "Union Station",
+      "north": "Bloor-Yonge Station"
+    },
+    "items": [
+      {
+        "id": "TMU_ID_card",
+        "name": "TMU ID CARD",
+        "description": "Your student ID card for TMU."
       },
-      "items": [
-        {
-          "id": "TMU_ID_card",
-          "name": "TMU ID CARD",
-          "description": "Your student ID card for TMU."
-        },
-        {
-          "id": "Screwdriver",
-          "name": "Screwdriver",
-          "description": "A small tool that could be useful in the future."
-        }
-      ]
+      {
+        "id": "Screwdriver",
+        "name": "Screwdriver",
+        "description": "A small tool that could be useful in the future."
+      }
+    ]
+  },
+  "Bloor-Yonge Station": {
+    "name": "Bloor-Yonge Station",
+    "description": "You are currently in Canada Busiest Subway Station. From here you can connect to Line 2 Bloor-Danforth. East to Kennedy and West to Kipling.",
+    "exits": {
+      "south": "TMU Station",
+      "north": "Eglinton",
+      "east": "Broadview Station",
+      "west": "Spadina Station"
+    },
+    "Eglinton": {
+      "name": "Eglinton Station",
+      "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
+      "exits": {
+        "south": "Bloor-Yonge Station",
+        "north": "Sheppard-Yonge",
+        "east": "Don Valley",
+        "west": "Cedarvale"
+      }
     }
-    
   }
-  
+}
