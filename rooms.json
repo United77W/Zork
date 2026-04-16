@@ -21,7 +21,18 @@
         "south west": "Union station",
         "north": "Bloor-Yonge station"
       },
-      "items": []
+      "items": [
+        {
+          "id": "TMU_ID_card",
+          "name": "TMU ID CARD",
+          "description": "Your student ID card for TMU."
+        },
+        {
+          "id": "Screwdriver",
+          "name": "Screwdriver",
+          "description": "A small tool that could be useful in the future."
+        }
+      ]
     }
     
   }
