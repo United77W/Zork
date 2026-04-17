@@ -9,7 +9,7 @@
     "items": [
       {
         "id": "PRESTO_card_1",
-        "name": "PRESTO CARD",
+        "name": "PRESTO",
         "description": "A small black card used to pay for transit. Funds are limited."
       }
     ]
@@ -68,7 +68,7 @@
     "name": "Finch Station",
     "description": "You are in Finch Station, the station is a hub for commuters heading to the York Region beyond Toronto's border.",
     "exits": {
-      "south": "Shppard-Yonge Station"
+      "south": "Sheppard-Yonge Station"
     }
   },
   "Don Mills Station": {
@@ -196,7 +196,7 @@
     "exits": {
       "south": "Cedarvale Station",
       "west": "Jane and Finch Station",
-      "north": "Vanghan Metropolitan Centre Station"
+      "north": "Vaughan Metropolitan Centre Station"
     }
   },
   "Vaughan Metropolitan Centre Station": {

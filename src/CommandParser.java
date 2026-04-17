@@ -19,13 +19,34 @@ public class CommandParser {
                     Room currentRoom = rooms.get(player.getCurrentRoomId());
                     String nextRoomId = currentRoom.getExits().get(direction);
                     if (nextRoomId != null) {
-                        player.setCurrentRoomId(nextRoomId);
+
+                        double fare = 3.30;
+
+                        if (player.hasItem("TTC_CARD")) {
+                            System.out.println("You used your employee card.");
+                        } else {
+
+                            if (!player.hasItem("PRESTO")) {
+                                System.out.println("You need a PRESTO card to travel on the TTC.");
+                                return;
+                            }
+
+                            if (!player.deductFare(fare)) {
+                                System.out.println("Declined. Insufficient Balance.");
+                                return;
+                            }
+                            player.setCurrentRoomId(nextRoomId);
+                            System.out.println("You used your PRESTO CARD ($" + fare + ")");
+                        }
+                        System.out.println("Remaining Balance: $" + player.getPrestoBalance());
                         System.out.println("You move " + direction + ".");
+
                         currentRoom = rooms.get(player.getCurrentRoomId());
                         System.out.println(currentRoom.getLongDescription());
 
                     } else {
                         System.out.println("You can't go that way.");
+
                     }
                 }
                 break;
@@ -88,8 +109,15 @@ public class CommandParser {
                 }
                 break;
             case "help":
-                System.out.println("Available commands: go [direction], look, take [item], drop [item], inventory, help");
+                System.out
+                        .println("Available commands: go [direction], look, take [item], drop [item], inventory, help");
                 break;
+            case "balance":
+                System.out.println("PRESTO BALANCE: $" + player.getPrestoBalance());
+            case "reload":
+                player.addMoney(10.0);
+                System.out.println("You have added $10 onto your PRESTO CARD");
+                System.out.println("Your new PRESTO Balance is: $" + player.getPrestoBalance());
             default:
                 System.out.println("I don't understand that command.");
                 break;

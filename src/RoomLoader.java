@@ -24,14 +24,15 @@ public class RoomLoader {
 
                 List<Item> items = new ArrayList<>();
                 JsonArray itemsJson = roomData.getAsJsonArray("items");
-                for (JsonElement itemElement : itemsJson) {
-                    JsonObject itemObj = itemElement.getAsJsonObject();
-                    String itemId = itemObj.get("id").getAsString();
-                    String itemName = itemObj.get("name").getAsString();
-                    String itemDescription = itemObj.get("description").getAsString();
-                    items.add(new Item(itemId, itemName, itemDescription));
+                if (itemsJson != null) {
+                    for (JsonElement itemElement : itemsJson) {
+                        JsonObject itemObj = itemElement.getAsJsonObject();
+                        String itemId = itemObj.get("id").getAsString();
+                        String itemName = itemObj.get("name").getAsString();
+                        String itemDescription = itemObj.get("description").getAsString();
+                        items.add(new Item(itemId, itemName, itemDescription));
+                    }
                 }
-
                 Room room = new Room(roomId, name, description, exits, items);
                 rooms.put(roomId, room);
             }
