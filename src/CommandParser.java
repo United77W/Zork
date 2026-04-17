@@ -44,6 +44,21 @@ public class CommandParser {
                         currentRoom = rooms.get(player.getCurrentRoomId());
                         System.out.println(currentRoom.getLongDescription());
 
+                        if (Math.random() < 0.3) {
+                            System.out.println("The Provincial Offences Officers boarded your train.");
+
+                            if (player.hasItem("TTC_CARD")) {
+                                System.out.println("You have pretended to be a TTC employee.");
+                            } else if (player.hasItem("PRESTO")) {
+                                System.out.println("You transfer is valid.");
+                            } else {
+                                System.out.println(
+                                        "You are a fare evasion. You are fined $100. This will be a criminal record as well.");
+                                player.addMoney(-100.0);
+
+                            }
+                        }
+
                     } else {
                         System.out.println("You can't go that way.");
 
