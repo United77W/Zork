@@ -18,8 +18,8 @@
     "name": "TMU Station",
     "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
     "exits": {
-      "southwest": "Union Station",
-      "north": "Bloor-Yonge Station"
+            "north": "Bloor-Yonge Station",
+      "southwest": "Union Station"
     },
     "items": [
       {
