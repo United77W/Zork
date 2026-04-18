@@ -127,9 +127,9 @@ public class CommandParser {
                 System.out
                         .println("Available commands: go [direction], look, take [item], drop [item], inventory, help");
                 break;
-            case "unlimated_balance":
-                player.addMoney(9000000000000000000000000.0);
-
+            case "admin":
+                player.addMoney(900000000000000000000000000000000000000000000000000000.0);
+                System.out.println("You now have unlimited funds.");
             case "balance":
                 System.out.println("PRESTO BALANCE: $" + player.getPrestoBalance());
             case "reload":
