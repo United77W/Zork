@@ -22,7 +22,7 @@ public class CommandParser {
 
                         double fare = 3.30;
 
-                        if (player.hasItem("TTC_CARD")) {
+                        if (player.hasItem("TTC_Employee_Card")) {
                             System.out.println("You used your employee card.");
                         } else {
 
@@ -47,7 +47,7 @@ public class CommandParser {
                         if (Math.random() < 0.3) {
                             System.out.println("The Provincial Offences Officers boarded your train.");
 
-                            if (player.hasItem("TTC_CARD")) {
+                            if (player.hasItem("TTC_Employee_Card")) {
                                 System.out.println("You have pretended to be a TTC employee.");
                             } else if (player.hasItem("PRESTO")) {
                                 System.out.println("You transfer is valid.");
