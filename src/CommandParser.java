@@ -20,6 +20,11 @@ public class CommandParser {
                     String nextRoomId = currentRoom.getExits().get(direction);
                     if (nextRoomId != null) {
 
+                        if (nextRoomId.equals("Power Station") && !player.hasItem("TTC_Employee_Card")) {
+                            System.out.println("You cannot enter this room. Employee Only.");
+                            return;
+                        }
+
                         double fare = 3.30;
 
                         if (player.hasItem("TTC_Employee_Card")) {
