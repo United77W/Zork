@@ -7,7 +7,7 @@ public class CommandParser {
             System.out.println("Please enter a command.");
             return;
         }
-        //
+        
         String command = words[0];
 
         switch (command) {
@@ -38,6 +38,8 @@ public class CommandParser {
                             player.setCurrentRoomId(nextRoomId);
                             System.out.println("You used your PRESTO CARD ($" + fare + ")");
                         }
+
+                        player.setCurrentRoomId(nextRoomId);
                         System.out.println("Remaining Balance: $" + player.getPrestoBalance());
                         System.out.println("You move " + direction + ".");
 

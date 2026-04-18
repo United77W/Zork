@@ -18,7 +18,7 @@
     "name": "TMU Station",
     "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
     "exits": {
-            "north": "Bloor-Yonge Station",
+      "north": "Bloor-Yonge Station",
       "southwest": "Union Station"
     },
     "items": [
@@ -52,7 +52,6 @@
       "north": "Sheppard-Yonge Station",
       "east": "Don Valley Station",
       "west": "Cedarvale Station"
-
     }
   },
   "Sheppard-Yonge Station": {
@@ -219,6 +218,13 @@
     "description": "You are currently located at Humber College Station. From here you can connect to TTC, YRT, GO, as well as MiWay.",
     "exits": {
       "east": "Jane and Finch Station"
+    }
+  },
+  "Power Station": {
+    "name": "Power Station",
+    "description": "You have ended up at a restricted zone, you a power station in front of you. It looks like it requires some works on it.",
+    "exits": {
+      "west": "Kennedy Station"
     }
   }
 }
