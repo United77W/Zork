@@ -132,10 +132,12 @@ public class CommandParser {
                 System.out.println("You now have unlimited funds.");
             case "balance":
                 System.out.println("PRESTO BALANCE: $" + player.getPrestoBalance());
+                break;
             case "reload":
                 player.addMoney(10.0);
                 System.out.println("You have added $10 onto your PRESTO CARD");
                 System.out.println("Your new PRESTO Balance is: $" + player.getPrestoBalance());
+                break;
             default:
                 System.out.println("I don't understand that command.");
                 break;

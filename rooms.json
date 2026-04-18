@@ -138,7 +138,7 @@
     "description": "You are in Main Street Station, you're almost at the end of line 2.",
     "exits": {
       "west": "Pape Station",
-      "north east": "Kennedy Station"
+      "northeast": "Kennedy Station"
     }
   },
   "Kennedy Station": {
@@ -152,7 +152,7 @@
     "items": [
       {
         "id": "TTC_card_1",
-        "name": "TTC Card",
+        "name": "TTC_Employee_Card",
         "description": "This key unlocks restricted areas that are limited to TTC employees."
       }
     ]
