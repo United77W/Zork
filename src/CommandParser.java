@@ -27,7 +27,7 @@ public class CommandParser {
                     String direction = words[1];
                     Room currentRoom = rooms.get(player.getCurrentRoomId());
                     String nextRoomId = currentRoom.getExits().get(direction);
-                    
+
                     if (nextRoomId != null) {
                         // Restricted area check
                         if (nextRoomId.equals("Power Station") && !player.hasItem("TTC_Employee_Card")) {
@@ -57,6 +57,15 @@ public class CommandParser {
 
                         Room newRoom = rooms.get(player.getCurrentRoomId());
                         System.out.println(newRoom.getLongDescription());
+
+                        if (player.getCurrentRoomId().equals("Broadview Station")) {
+                            System.out.println("\n--- CONFRONTATION ---");
+                            System.out.println(
+                                    "A crackhead steps out: 'EUGHHGUEHUUGH! Give me your PRESTO card and your money!'");
+                            System.out.println("The exits are blocked! What will you do?");
+                            System.out.println("Commands: ATTACK [item], or RUN");
+                            isBeingRobbed = true;
+                        }
 
                         // Random fare inspector event
                         if (Math.random() < 0.3) {
@@ -157,18 +166,6 @@ public class CommandParser {
                 }
                 break;
 
-            case "talk":
-                if (player.getCurrentRoomId().equals("Broadview Station")) {
-                    System.out.println("\n--- CONFRONTATION ---");
-                    System.out.println("A crackhead steps out: 'EUGHHGUEHUUGH! Give me your PRESTO card and your money!'");
-                    System.out.println("The exits are blocked! What will you do?");
-                    System.out.println("Commands: ATTACK [item], or RUN");
-                    isBeingRobbed = true;
-                } else {
-                    System.out.println("You talk to yourself. People are staring.");
-                }
-                break;
-
             case "attack":
                 if (!isBeingRobbed) {
                     System.out.println("There is nothing to attack here.");
@@ -203,13 +200,15 @@ public class CommandParser {
                 System.out.println("Your new PRESTO Balance is: $" + player.getPrestoBalance());
                 break;
             case "help":
-                System.out.println("Commands: go [dir], look, take [item], drop [item], use [item], inventory, talk, attack [item], run, help");
+                System.out.println(
+                        "Commands: go [dir], look, take [item], drop [item], use [item], inventory, talk, attack [item], run, help");
                 break;
 
             default:
                 System.out.println("I don't understand that command.");
                 break;
         }
+
     }
 
     private void handleAttack(String itemName, Player player) {
@@ -240,7 +239,7 @@ public class CommandParser {
             isBeingRobbed = false;
         } else {
             System.out.println("That item isn't very effective as a weapon.");
-      
+
         }
     }
 
