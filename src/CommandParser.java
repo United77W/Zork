@@ -203,6 +203,14 @@ public class CommandParser {
                     System.out.println("You can't use the crowbar here.");
                 }
                 break;
+
+            case "key":
+                if (roomId.equals("Secret Room")) {
+                    System.out.println("You use the key to unlock an employees only door and find a hidden office.");
+                } else {
+                    System.out.println("You can't use the key here.");
+                }
+                break;
         }
     }
 }
