@@ -117,7 +117,7 @@
   },
   "Broadview Station": {
     "name": "Broadview Station",
-    "description": "You are in Broadview Station, lights flicker as a crackhead roams the hallway.",
+    "description": "You are in Broadview Station, lights flicker as a crackhead roams the hallway. He's staring right at you, maybe you should talk to him...",
     "exits": {
       "west": "Bloor-Yonge Station",
       "east": "Pape Station",
