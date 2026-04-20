@@ -160,7 +160,7 @@ public class CommandParser {
             case "talk":
                 if (player.getCurrentRoomId().equals("Broadview Station")) {
                     System.out.println("\n--- CONFRONTATION ---");
-                    System.out.println("A hooded figure steps out: 'Give me your PRESTO card and cash!'");
+                    System.out.println("A crackhead steps out: 'EUGHHGUEHUUGH! Give me your PRESTO card and your money!'");
                     System.out.println("The exits are blocked! What will you do?");
                     System.out.println("Commands: ATTACK [item], or RUN");
                     isBeingRobbed = true;
@@ -224,19 +224,19 @@ public class CommandParser {
 
         String name = weapon.getName().toLowerCase();
         if (name.contains("screwdriver") || name.contains("crowbar") || name.contains("flashlight")) {
-            System.out.println("You brandish your " + weapon.getName() + " aggressively!");
-            System.out.println("The robber's eyes widen. 'Woah! Take it easy! I'm leaving!'");
+            System.out.println("You wave your " + weapon.getName() + " aggressively!");
+            System.out.println("The crackhead's eyes widen. 'Woah! Take it easy! EUGHGUGHUGHGUGHHUG!'");
             System.out.println("He disappears into the tunnels. You are safe.");
             isBeingRobbed = false;
         } else if (name.contains("ttc_employee_card") || name.contains("presto")) {
             System.out.println("You try to defend yourself with a " + weapon.getName() + "...");
-            System.out.println("The robber laughs. 'Is that a joke?'");
-            System.out.println("He shoves you and steals $5.00 from your pocket before running away.");
+            System.out.println("The crackhead laughs. EUGUUUGHUHUUHGHG. 'Is that a joke?'");
+            System.out.println("He shoves you and steals your PRESTO card from your pocket before running away.");
             player.addMoney(-5.0);
             isBeingRobbed = false;
         } else {
             System.out.println("That item isn't very effective as a weapon.");
-            // You can decide if the robber stays or leaves here.
+      
         }
     }
 
