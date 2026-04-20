@@ -201,6 +201,7 @@ public class CommandParser {
                 player.addMoney(10.0);
                 System.out.println("You have added $10 onto your PRESTO CARD");
                 System.out.println("Your new PRESTO Balance is: $" + player.getPrestoBalance());
+                break;
             case "help":
                 System.out.println("Commands: go [dir], look, take [item], drop [item], use [item], inventory, talk, attack [item], run, help");
                 break;
