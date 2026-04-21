@@ -6,6 +6,7 @@ public class Player {
     private List<Item> inventory;
     private double prestoBalance;
     private double cash;
+    private String currentLine;
     
     private int powerStationsRepaired;
 
@@ -79,6 +80,14 @@ public class Player {
 
     public void setLine5Restored(boolean value) {
         Line5Restored = value;
+    }
+
+    public String getCurrentLine() {
+        return currentLine;
+    }
+
+    public void setCurrentLine(String line) {
+        this.currentLine = line;
     }
 
 }

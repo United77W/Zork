@@ -25,16 +25,43 @@ public class SoundManager {
         }
     }
 
-    public static void playAnnouncement(String stationId) {
+    public static void playAnnouncement(String stationId, String line) {
         switch (stationId) {
             case "Cedarvale Station":
-                playBlocking("sounds/cedarvale.wav");
+                if (line != null && line.equals("Line 1")) {
+                    playBlocking("sounds/cedarvale_line1.wav");
+                } else if (line != null && line.equals("Line 5")) {
+                    playBlocking("sounds/cedarvale_line5.wav");
+                }
                 break;
             case "Finch West Station":
-                playBlocking("sounds/finch_west.wav");
+                if (line != null && line.equals("Line 1")) {
+                    playBlocking("sounds/finch_west_1.wav");
+                } else if (line != null && line.equals("Line 6")) {
+                    playBlocking("sounds/finchwest6.wav");
+                }
                 break;
             case "Union Station":
-                playBlocking("sounds/union_station.wav");
+                playBlocking("sounds/union.wav");
+                break;
+            case "Jane and Finch Station":
+                playBlocking("sounds/janeandfinch.wav");
+                break;
+            case "Finch Station":
+                playBlocking("sounds/finch.wav");
+                break;
+            case "Bloor-Yonge Station":
+                if (line != null && line.equals("Line 1")) {
+                    playBlocking("sounds/bloor_yonge_1.wav");
+                } else if (line != null && line.equals("Line 2")) {
+                    playBlocking("sounds/bloor_yonge_line2.wav");
+                }
+                break;
+            case "TMU Station":
+                playBlocking("sounds/tmu.wav");
+                break;
+            case "Vaughan Metropolitan Centre Station":
+                playBlocking("sounds/vmc.wav");
                 break;
             default:
                 break;

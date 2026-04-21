@@ -24,6 +24,15 @@ public class RoomLoader {
 
                 List<Item> items = new ArrayList<>();
                 JsonArray itemsJson = roomData.getAsJsonArray("items");
+
+                List<String> lines = new ArrayList<>();
+                JsonArray linesJson = roomData.getAsJsonArray("lines");
+                if (linesJson != null) {
+                    for (JsonElement e : linesJson) {
+                        lines.add(e.getAsString());
+                    }
+                }
+
                 if (itemsJson != null) {
                     for (JsonElement itemElement : itemsJson) {
                         JsonObject itemObj = itemElement.getAsJsonObject();
@@ -33,7 +42,7 @@ public class RoomLoader {
                         items.add(new Item(itemId, itemName, itemDescription));
                     }
                 }
-                Room room = new Room(roomId, name, description, exits, items);
+                Room room = new Room(roomId, name, description, exits, items, lines);
                 rooms.put(roomId, room);
             }
         } catch (Exception e) {

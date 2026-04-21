@@ -7,15 +7,17 @@ public class Room {
     private String description;
     private Map<String, String> exits; // direction → roomId
     private List<Item> items;
+    private List<String> lines;
 
     private boolean puzzleSolved = false;
 
-    public Room(String id, String name, String description, Map<String, String> exits, List<Item> items) {
+    public Room(String id, String name, String description, Map<String, String> exits, List<Item> items, List<String> lines) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.exits = exits;
         this.items = items;
+        this.lines = lines;
     }
     //
     public String getId() {
@@ -78,5 +80,9 @@ public class Room {
 
     public void solvePuzzle() {
         puzzleSolved = true;
+    }
+
+    public List<String> getLines() {
+        return lines;
     }
 }

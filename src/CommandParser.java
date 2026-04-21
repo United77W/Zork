@@ -1,5 +1,6 @@
 import java.util.Map;
 import java.util.Set;
+import java.util.List;
 
 public class CommandParser {
     // This variable stays at the top to track the game state
@@ -51,7 +52,27 @@ public class CommandParser {
                     String nextRoomId = currentRoom.getExits().get(direction);
 
                     if (nextRoomId != null) {
-                        // Restricted area check
+
+                        Room nextRoom = rooms.get(nextRoomId);
+
+                        List<String> currentLines = currentRoom.getLines();
+                        List<String> nextLines = nextRoom.getLines();
+
+                        String usedLine = null;
+
+                        if (currentLines != null && nextLines != null) {
+                            for (String line : currentLines) {
+                                if (nextLines.contains(line)) {
+                                    usedLine = line;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (usedLine == null && nextLines != null && !nextLines.isEmpty()) {
+                            usedLine = nextLines.get(0);
+                        }
+
                         if (nextRoomId.equals("Power Station") && !player.hasItem("TTC_Employee_Card")) {
                             System.out.println("You cannot enter this room. Employee Only.");
                             return;
@@ -86,14 +107,15 @@ public class CommandParser {
 
                         player.setCurrentRoomId(nextRoomId);
 
+                        player.setCurrentLine(usedLine);
+
                         System.out.println("Please stand clear of the doors");
 
                         SoundManager.playDoorChimeBlocking();
 
-                        SoundManager.playAnnouncement(nextRoomId);
-
+                        SoundManager.playAnnouncement(nextRoomId, player.getCurrentLine());
                         System.out.println("Arriving at " + nextRoomId);
-                        
+
                         Room newRoom = rooms.get(nextRoomId);
                         System.out.println(newRoom.getLongDescription());
 

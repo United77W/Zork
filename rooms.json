@@ -2,6 +2,7 @@
   "Union Station": {
     "name": "Union Station",
     "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
+    "lines": ["Line 1"],
     "exits": {
       "northeast": "TMU Station",
       "northwest": "Museum Station"
@@ -17,6 +18,7 @@
   "TMU Station": {
     "name": "TMU Station",
     "description": "You step out into the busy downtown core near Toronto Metropolitan University. Students rush past, and the city hums with energy. Streetcars rattle nearby.",
+    "lines": ["Line 1"],
     "exits": {
       "north": "Bloor-Yonge Station",
       "southwest": "Union Station"
@@ -37,6 +39,7 @@
   "Bloor-Yonge Station": {
     "name": "Bloor-Yonge Station",
     "description": "You are currently in Canadas busiest subway station. From here you can connect to Line 2 Bloor-Danforth. East to Kennedy and West to Kipling.",
+    "lines": ["Line 1", "Line 2"],
     "exits": {
       "south": "TMU Station",
       "north": "Eglinton Station",
@@ -47,6 +50,7 @@
   "Eglinton Station": {
     "name": "Eglinton Station",
     "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
+      "lines": ["Line 1", "Line 5"],
     "exits": {
       "south": "Bloor-Yonge Station",
       "north": "Sheppard-Yonge Station",
@@ -57,6 +61,7 @@
   "Sheppard-Yonge Station": {
     "name": "Sheppard-Yonge Station",
     "description": "You are currently located at Sheppard Yonge. From here you can connect to Line 4 Sheppard.",
+    "lines": ["Line 1", "Line 4"],
     "exits": {
       "east": "Don Mills Station",
       "south": "Eglinton Station",
@@ -66,6 +71,7 @@
   "Finch Station": {
     "name": "Finch Station",
     "description": "You are in Finch Station, the station is a hub for commuters heading to the York Region beyond Toronto's border.",
+    "lines": ["Line 1"],
     "exits": {
       "south": "Sheppard-Yonge Station"
     }
@@ -73,6 +79,7 @@
   "Don Mills Station": {
     "name": "Don Mills Station",
     "description": "You are in Don Mills Station, the station is a hub for commuters heading to Scarbrough.",
+    "lines": ["Line 4"],
     "exits": {
       "west": "Sheppard-Yonge Station",
       "south": "Don Valley Station"
@@ -81,6 +88,7 @@
   "Museum Station": {
     "name": "Museum Station",
     "description": "You are in Museum Station, a quiet stop on the TTC line. There are artifacts and totem poles on display, and the station has a calm atmosphere.",
+    "lines": ["Line 1"],
     "exits": {
       "north": "Cedarvale Station",
       "southeast": "Union Station"
@@ -96,6 +104,7 @@
   "Kipling Station": {
     "name": "Kipling Station",
     "description": "You are in Kipling Station, the station is quiet and the air is filled with the scent of fresh coffee from a nearby café. The station is a hub for commuters heading to the airport and the suburbs.",
+    "lines": ["Line 2"],
     "exits": {
       "east": "Dundas West Station"
     }
@@ -103,6 +112,7 @@
   "Dundas West Station": {
     "name": "Dundas West Station",
     "description": "You are in Dundas West Station, a busy stop on the TTC line. The station is known for its vibrant atmosphere and diverse crowd.",
+    "lines": ["Line 2"],
     "exits": {
       "east": "Bloor-Yonge Station",
       "west": "Kipling Station"
@@ -118,6 +128,7 @@
   "Broadview Station": {
     "name": "Broadview Station",
     "description": "You are in Broadview Station, lights flicker as a crackhead roams the hallway. He's staring right at you, maybe you should talk to him...",
+    "lines": ["Line 2"],
     "exits": {
       "west": "Bloor-Yonge Station",
       "east": "Pape Station",
@@ -127,6 +138,7 @@
   "Pape Station": {
     "name": "Pape Station",
     "description": "You are in Pape Station, a statue of Mr. Pape stands in the middle of the station.",
+    "lines": ["Line 2"],
     "exits": {
       "east": "Main Street Station",
       "west": "Broadview Station"
@@ -135,6 +147,7 @@
   "Main Street Station": {
     "name": "Main Street Station",
     "description": "You are in Main Street Station, you're almost at the end of line 2.",
+    "lines": ["Line 2"],
     "exits": {
       "west": "Pape Station",
       "northeast": "Kennedy Station"
@@ -143,6 +156,7 @@
   "Kennedy Station": {
     "name": "Kennedy Station",
     "description": "You are in Kennedy Station, the terminal station on Line 2, and line 5. You hear the noise of a nearby power station...",
+    "lines": ["Line 2", "Line 5"],
     "exits": {
       "east": "Power Station",
       "southwest": "Main Street Station",
@@ -159,6 +173,7 @@
   "Don Valley Station": {
     "name": "Don Valley Station",
     "description": "You are in Don Valley Station, the station is dimly lit and the air is filled with a faint hum of machinery.",
+    "lines": ["Line 5"],
     "exits": {
       "east": "Kennedy Station",
       "north": "Don Mills Station",
@@ -175,6 +190,7 @@
   "Cedarvale Station": {
     "name": "Cedarvale Station",
     "description": "You are in Cedarvale Station, the station is a hub for commuters heading to the suburbs.",
+    "lines": ["Line 1", "Line 5"],
     "exits": {
       "east": "Eglinton Station",
       "south": "Museum Station",
@@ -185,6 +201,7 @@
   "Mount Dennis Station": {
     "name": "Mount Dennis Station",
     "description": "You are in Mount Dennis Station, the station is a hub for commuters heading to the airport and beyond Toronto's border.",
+    "lines": ["Line 5"],
     "exits": {
       "east": "Cedarvale Station"
     }
@@ -192,6 +209,7 @@
   "Finch West Station": {
     "name": "Finch West Station",
     "description": "You are currently in Finch West Station. A big interchange station consist of Line 1 and Line 6. From here you can go beyond Toronto's border, into York Region.",
+    "lines": ["Line 1", "Line 5"],
     "exits": {
       "south": "Cedarvale Station",
       "west": "Jane and Finch Station",
@@ -201,6 +219,7 @@
   "Vaughan Metropolitan Centre Station": {
     "name": "Vaughan Metropolitan Centre Station",
     "description": "You are currently in the western Terminal of Line 1 Yonge University. VMC station is located in York Region. This station is one of the first TTC stations in York Region.",
+    "lines": ["Line 1"],
     "exits": {
       "south": "Finch West Station"
     }
@@ -208,6 +227,7 @@
   "Jane and Finch Station": {
     "name": "Jane and Finch Station",
     "description": "You are currently located in a very well known area in Toronto.",
+    "lines": ["Line 6"],
     "exits": {
       "east": "Finch West Station",
       "west": "Humber College Station"
@@ -216,6 +236,7 @@
   "Humber College Station": {
     "name": "Humber College Station",
     "description": "You are currently located at Humber College Station. From here you can connect to TTC, YRT, GO, as well as MiWay.",
+    "lines": ["Line 6"],
     "exits": {
       "east": "Jane and Finch Station"
     }
