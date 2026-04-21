@@ -30,8 +30,8 @@ public class SoundManager {
             case "Cedarvale Station":
                 playBlocking("sounds/cedarvale.wav");
                 break;
-            case "Bloor-Yonge Station":
-                playBlocking("sounds/bloor_yonge.wav");
+            case "Finch West Station":
+                playBlocking("sounds/finch_west.wav");
                 break;
             case "Union Station":
                 playBlocking("sounds/union_station.wav");
