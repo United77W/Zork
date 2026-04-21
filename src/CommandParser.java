@@ -21,7 +21,7 @@ public class CommandParser {
             "Kennedy Station");
 
     private Map<String, Set<String>> shuttleBuses = Map.of(
-            "Mount Dennis Station", Set.of("Cedarvale"),
+            "Mount Dennis Station", Set.of("Cedarvale Station"),
             "Cedarvale Station", Set.of("Mount Dennis Station", "Eglinton Station"),
             "Eglinton Station", Set.of("Cedarvale Station", "Don Valley Station"),
             "Don Valley Station", Set.of("Eglinton Station", "Kennedy Station"),
@@ -85,6 +85,14 @@ public class CommandParser {
                         }
 
                         player.setCurrentRoomId(nextRoomId);
+                        System.out.println("Please Stand Clear Of The Doors");
+                        SoundManager.playDoorChime();
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("Remaining Balance: $" + player.getPrestoBalance());
                         System.out.println("You move " + direction + ".");
 
@@ -138,7 +146,7 @@ public class CommandParser {
                 if (words.length < 2) {
                     System.out.println("Take what?");
                 } else {
-                    String itemName = words[1];
+                    String itemName = input.substring(command.length()).trim();
                     Room room = rooms.get(player.getCurrentRoomId());
                     Item itemToTake = null;
                     for (Item item : room.getItems()) {
