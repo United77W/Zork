@@ -6,12 +6,18 @@ public class Player {
     private List<Item> inventory;
     private double prestoBalance;
     private double cash;
+    
+    private int powerStationsRepaired;
+
+    private boolean Line5Restored = false;
 
     public Player(String startingRoomId) {
         this.currentRoomId = startingRoomId;
         this.inventory = new ArrayList<>();
         this.prestoBalance = 10.00;
         this.cash = 10.00;
+
+        this.powerStationsRepaired = 0;
     }
 
     public String getCurrentRoomId() {
@@ -57,6 +63,22 @@ public class Player {
             }
         }
         return false;
+    }
+
+    public int getPowerStationsRepaired() {
+        return powerStationsRepaired;
+    }
+
+    public void repairPowerStation() {
+        powerStationsRepaired++;
+    }
+
+    public boolean isLine5Restored() {
+        return Line5Restored;
+    }
+
+    public void setLine5Restored(boolean value) {
+        Line5Restored = value;
     }
 
 }

@@ -8,6 +8,8 @@ public class Room {
     private Map<String, String> exits; // direction → roomId
     private List<Item> items;
 
+    private boolean puzzleSolved = false;
+
     public Room(String id, String name, String description, Map<String, String> exits, List<Item> items) {
         this.id = id;
         this.name = name;
@@ -69,5 +71,12 @@ public class Room {
         }
 
         return sb.toString();
+    }
+    public boolean isPuzzleSolved() {
+        return puzzleSolved;
+    }
+
+    public void solvePuzzle() {
+        puzzleSolved = true;
     }
 }

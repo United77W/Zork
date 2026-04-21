@@ -35,6 +35,13 @@ public class Game {
             System.out.print("> ");
             String input = scanner.nextLine();
             commandParser.parse(input, player, rooms);
+
+            if(player.getPowerStationsRepaired() >= 4) {
+                System.out.println("LINE 5 RESTORED");
+                System.out.println("You have successfully fixed all power stations!");
+                System.out.println("The slow Shuttle Buses are no longer needs");
+                System.exit(0);
+            }
         }
     }
 }
