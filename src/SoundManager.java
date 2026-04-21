@@ -34,6 +34,13 @@ public class SoundManager {
                     playBlocking("sounds/cedarvale_line5.wav");
                 }
                 break;
+            case "Eglinton Station":
+                if (line != null && line.equals("Line 1")) {
+                    playBlocking("sounds/eglinton_1.wav");
+                } else if (line != null && line.equals("Line 5")) {
+                    playBlocking("sounds/eglinton_5.wav");
+                }
+                break;
             case "Finch West Station":
                 if (line != null && line.equals("Line 1")) {
                     playBlocking("sounds/finch_west_1.wav");
@@ -57,11 +64,49 @@ public class SoundManager {
                     playBlocking("sounds/bloor_yonge_line2.wav");
                 }
                 break;
+            case "Kennedy Station":
+                if (line != null && line.equals("Line 2")) {
+                    playBlocking("sounds/kennedy_2.wav");
+                } else if (line != null && line.equals("Line 5")) {
+                    playBlocking("sounds/kennedy_5.wav");
+                }
+                break;
+            case "Sheppard-Yonge Station":
+                if (line != null && line.equals("Line 1")) {
+                    playBlocking("sounds/sheppard_yonge_1.wav");
+                } else if (line != null && line.equals("Line 4")) {
+                    playBlocking("sounds/sheppard_yonge_4.wav");
+                }
+                break;
             case "TMU Station":
                 playBlocking("sounds/tmu.wav");
                 break;
             case "Vaughan Metropolitan Centre Station":
                 playBlocking("sounds/vmc.wav");
+                break;
+            case "Broadview Station":
+                playBlocking("sounds/broadview.wav");
+                break;
+            case "Dundas West Station":
+                playBlocking("sounds/dundaswest.wav");
+                break;
+            case "Kipling Station":
+                playBlocking("sounds/kipling.wav");
+                break;
+            case "Don Mills Station":
+                playBlocking("sounds/donmills.wav");
+                break;
+            case "Main Street Station":
+                playBlocking("sounds/mainstreet.wav");
+                break;
+            case "Pape Station":
+                playBlocking("sounds/pape.wav");
+                break;
+            case "Museum Station":
+                playBlocking("sounds/museum.wav");
+                break;
+            case "Humber College Station":
+                playBlocking("sounds/humbercollege.wav");
                 break;
             default:
                 break;
