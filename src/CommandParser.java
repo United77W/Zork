@@ -85,19 +85,20 @@ public class CommandParser {
                         }
 
                         player.setCurrentRoomId(nextRoomId);
-                        System.out.println("Please Stand Clear Of The Doors");
-                        SoundManager.playDoorChime();
 
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        System.out.println("Please stand clear of the doors");
+
+                        SoundManager.playDoorChimeBlocking();
+
+                        SoundManager.playAnnouncement(nextRoomId);
+
+                        System.out.println("Arriving at " + nextRoomId);
+                        
+                        Room newRoom = rooms.get(nextRoomId);
+                        System.out.println(newRoom.getLongDescription());
+
                         System.out.println("Remaining Balance: $" + player.getPrestoBalance());
                         System.out.println("You move " + direction + ".");
-
-                        Room newRoom = rooms.get(player.getCurrentRoomId());
-                        System.out.println(newRoom.getLongDescription());
 
                         if (player.getCurrentRoomId().equals("Broadview Station")) {
                             System.out.println("\n--- CONFRONTATION ---");
@@ -289,7 +290,6 @@ public class CommandParser {
                 target = Character.toUpperCase(target.charAt(0)) + target.substring(1).toLowerCase();
 
                 String current = player.getCurrentRoomId();
-
 
                 if (!Line5Stations.contains(current)) {
                     System.out.println("Shuttle buses only operate on Line 5 stations.");
