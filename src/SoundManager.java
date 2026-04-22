@@ -1,5 +1,4 @@
 import java.io.File;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -136,7 +135,6 @@ public class SoundManager {
 
             clip.start();
 
-
             Thread.sleep(clip.getMicrosecondLength() / 1000);
 
             clip.close();
@@ -147,6 +145,14 @@ public class SoundManager {
     }
 
     public static void playLine5RestoredAnnouncement() {
-    playBlocking("sounds/line5_restored.wav");
-}
+        playBlocking("sounds/line5_restored.wav");
+    }
+
+    public static void playLine6DelayAnnouncement() {
+        playBlocking("sounds/finchwest_delay_line6.wav");
+    }
+
+    public static void playSound(String filePath) {
+        playBlocking(filePath);
+    }
 }

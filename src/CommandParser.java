@@ -1,7 +1,7 @@
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.List;
-import java.util.HashSet;
 
 public class CommandParser {
     // This variable stays at the top to track the game state
@@ -115,6 +115,35 @@ public class CommandParser {
 
                         }
 
+                        if (nextRoomId.equals("Finch West Station")) {
+
+                            boolean goingToLine6 = "Line 6".equals(usedLine);
+
+                            boolean transferringToLine6 = currentRoom.getLines() != null &&
+                                    nextRoom.getLines() != null &&
+                                    currentRoom.getLines().contains("Line 1") &&
+                                    nextRoom.getLines().contains("Line 6");
+
+                            if (goingToLine6 || transferringToLine6) {
+
+                                if (Math.random() < 0.25) {
+                                    System.out.println("Attention passengers...");
+                                    System.out.println("There is a delay on Line 6 at Finch West Station.");
+
+                                    try {
+                                        int delay = 2000 + (int) (Math.random() * 4000);
+                                        Thread.sleep(delay);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    SoundManager.playLine6DelayAnnouncement();
+
+                                    System.out.println("We apologize for the delay. Service is now resuming.");
+                                }
+                            }
+                        }
+
                         String from = player.getCurrentRoomId();
                         String to = nextRoomId;
 
@@ -151,6 +180,8 @@ public class CommandParser {
 
                         player.setCurrentRoomId(nextRoomId);
 
+                        playOccasionalAnnouncement(nextRoomId, player.getCurrentLine());
+
                         if (!player.hasDiscovered(nextRoomId)) {
                             System.out.println("NEW STATION DISCOVERED!");
                             System.out.println("+$10");
@@ -184,7 +215,6 @@ public class CommandParser {
                             isBeingRobbed = true;
                         }
 
-                        // Random fare inspector event
                         if (Math.random() < 0.3) {
                             System.out.println("The Provincial Offences Officers boarded your train.");
                             if (player.hasItem("TTC_Employee_Card")) {
@@ -461,6 +491,19 @@ public class CommandParser {
             default:
                 System.out.println("You aren't sure how to use this.");
                 break;
+        }
+    }
+
+    private void playOccasionalAnnouncement(String stationId, String line) {
+
+        if (Math.random() < 0.3) { // 30% chance overall
+
+            if (Math.random() < 0.5) {
+                // TRACK WORK announcement
+                SoundManager.playSound("sounds/track_work.wav");
+            } else {
+                SoundManager.playSound("sounds/safety_announcement.wav");
+            }
         }
     }
 }
