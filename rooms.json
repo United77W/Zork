@@ -44,7 +44,7 @@
       "south": "TMU Station",
       "north": "Eglinton Station",
       "east": "Broadview Station",
-      "west": "Dundas West Station"
+      "west": "Spadina Station"
     }
   },
   "Eglinton Station": {
@@ -90,7 +90,7 @@
     "description": "You are in Museum Station, a quiet stop on the TTC line. There are artifacts and totem poles on display, and the station has a calm atmosphere.",
     "lines": ["Line 1"],
     "exits": {
-      "north": "Cedarvale Station",
+      "north": "Spadina Station",
       "southeast": "Union Station"
     },
     "items": [
@@ -114,7 +114,7 @@
     "description": "You are in Dundas West Station, a busy stop on the TTC line. The station is known for its vibrant atmosphere and diverse crowd.",
     "lines": ["Line 2"],
     "exits": {
-      "east": "Bloor-Yonge Station",
+      "east": "Spadina Station",
       "west": "Kipling Station"
     },
     "items": [
@@ -193,7 +193,7 @@
     "lines": ["Line 1", "Line 5"],
     "exits": {
       "east": "Eglinton Station",
-      "south": "Museum Station",
+      "south": "Spadina Station",
       "west": "Mount Dennis Station",
       "north": "Finch West Station"
     }
@@ -209,7 +209,7 @@
   "Finch West Station": {
     "name": "Finch West Station",
     "description": "You are currently in Finch West Station. A big interchange station consist of Line 1 and Line 6. From here you can go beyond Toronto's border, into York Region.",
-    "lines": ["Line 1", "Line 5"],
+    "lines": ["Line 1", "Line 6"],
     "exits": {
       "south": "Cedarvale Station",
       "west": "Jane and Finch Station",
@@ -239,6 +239,17 @@
     "lines": ["Line 6"],
     "exits": {
       "east": "Jane and Finch Station"
+    }
+  },
+  "Spadina Station": {
+    "name": "Spadina Station",
+    "description": "You are currently located at Spadina Station.",
+    "lines": ["Line 1", "Line 2"],
+    "exits": {
+      "east": "Bloor-Yonge Station",
+      "west": "Dundas West Station",
+      "north": "Cedarvale Station",
+      "south": "Museum Station"
     }
   },
   "Power Station": {

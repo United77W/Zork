@@ -31,14 +31,14 @@ public class SoundManager {
                 if (line != null && line.equals("Line 1")) {
                     playBlocking("sounds/cedarvale_line1.wav");
                 } else if (line != null && line.equals("Line 5")) {
-                    playBlocking("sounds/cedarvale_line5.wav");
+                    playBlocking("sounds/cedarvale5.wav");
                 }
                 break;
             case "Eglinton Station":
                 if (line != null && line.equals("Line 1")) {
                     playBlocking("sounds/eglinton_1.wav");
                 } else if (line != null && line.equals("Line 5")) {
-                    playBlocking("sounds/eglinton_5.wav");
+                    playBlocking("sounds/eglinton5.wav");
                 }
                 break;
             case "Finch West Station":
@@ -57,29 +57,42 @@ public class SoundManager {
             case "Finch Station":
                 playBlocking("sounds/finch.wav");
                 break;
+            case "Don Valley Station":
+                playBlocking("sounds/donvalley.wav");
+                break;
             case "Bloor-Yonge Station":
                 if (line != null && line.equals("Line 1")) {
                     playBlocking("sounds/bloor_yonge_1.wav");
                 } else if (line != null && line.equals("Line 2")) {
-                    playBlocking("sounds/bloor_yonge_line2.wav");
+                    playBlocking("sounds/yonge.wav");
                 }
                 break;
             case "Kennedy Station":
                 if (line != null && line.equals("Line 2")) {
-                    playBlocking("sounds/kennedy_2.wav");
+                    playBlocking("sounds/kennedy2.wav");
                 } else if (line != null && line.equals("Line 5")) {
-                    playBlocking("sounds/kennedy_5.wav");
+                    playBlocking("sounds/kennedy5.wav");
                 }
                 break;
             case "Sheppard-Yonge Station":
                 if (line != null && line.equals("Line 1")) {
-                    playBlocking("sounds/sheppard_yonge_1.wav");
+                    playBlocking("sounds/sheppardyonge_1.wav");
                 } else if (line != null && line.equals("Line 4")) {
                     playBlocking("sounds/sheppard_yonge_4.wav");
                 }
                 break;
+            case "Spadina Station":
+                if (line != null && line.equals("Line 1")) {
+                    playBlocking("sounds/spadina1.wav");
+                } else if (line != null && line.equals("Line 2")) {
+                    playBlocking("sounds/spadina2.wav");
+                }
+                break;
             case "TMU Station":
                 playBlocking("sounds/tmu.wav");
+                break;
+            case "Mount Dennis Station":
+                playBlocking("sounds/mountdennis.wav");
                 break;
             case "Vaughan Metropolitan Centre Station":
                 playBlocking("sounds/vmc.wav");
@@ -97,7 +110,7 @@ public class SoundManager {
                 playBlocking("sounds/donmills.wav");
                 break;
             case "Main Street Station":
-                playBlocking("sounds/mainstreet.wav");
+                playBlocking("sounds/main_street.wav");
                 break;
             case "Pape Station":
                 playBlocking("sounds/pape.wav");
