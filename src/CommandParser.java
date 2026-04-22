@@ -88,6 +88,7 @@ public class CommandParser {
                                         "Shuttle Buses Are Operating. The TTC apoligize for this inconvience.");
                                 break;
                             }
+
                         }
 
                         double fare = 3.30;
@@ -106,6 +107,15 @@ public class CommandParser {
                         }
 
                         player.setCurrentRoomId(nextRoomId);
+
+                        if (!player.hasDiscovered(nextRoomId)) {
+                            System.out.println("NEW STATION DISCOVERED!");
+                            System.out.println("+$10");
+                            player.addMoney(10.0);
+                            player.discoverStation(nextRoomId);
+                        }
+
+                        player.resetBusking();
 
                         player.setCurrentLine(usedLine);
 
@@ -294,7 +304,7 @@ public class CommandParser {
                 break;
             case "help":
                 System.out.println(
-                        "Commands: go [dir], look, take [item], drop [item], use [item], inventory, talk, attack [item], run, help");
+                        "Commands: go [dir], look, take [item], drop [item], use [item], inventory, attack [item], run, busk, help");
                 break;
 
             case "shuttlebus":
@@ -350,9 +360,24 @@ public class CommandParser {
 
                 break;
 
+            case "busk":
+                String currentStation = player.getCurrentRoomId();
+
+                if (player.hasBuskedHere(currentStation)) {
+                    System.out.println("You already busked here this visit.");
+                } else {
+                    System.out.println("You start busking...");
+                    System.out.println("People toss you some money!");
+                    System.out.println("+$5");
+                    player.addMoney(5.0);
+                    player.markBusked(currentStation);
+                }
+                break;
+
             default:
                 System.out.println("I don't understand that command.");
                 break;
+            
         }
 
     }

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Player {
     private String currentRoomId;
@@ -7,7 +9,9 @@ public class Player {
     private double prestoBalance;
     private double cash;
     private String currentLine;
-    
+    private Set<String> discoveredStations = new HashSet<>();
+    private Set<String> buskedThisVisit = new HashSet<>();
+
     private int powerStationsRepaired;
 
     private boolean Line5Restored = false;
@@ -24,7 +28,8 @@ public class Player {
     public String getCurrentRoomId() {
         return currentRoomId;
     }
-        //
+
+    //
     public void setCurrentRoomId(String roomId) {
         this.currentRoomId = roomId;
     }
@@ -59,7 +64,7 @@ public class Player {
 
     public boolean hasItem(String itemName) {
         for (Item item : inventory) {
-            if(item.getName().equalsIgnoreCase(itemName)) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
                 return true;
             }
         }
@@ -89,5 +94,23 @@ public class Player {
     public void setCurrentLine(String line) {
         this.currentLine = line;
     }
+public boolean hasDiscovered(String station) {
+    return discoveredStations.contains(station);
+}
 
+public void discoverStation(String station) {
+    discoveredStations.add(station);
+}
+
+public boolean hasBuskedHere(String station) {
+    return buskedThisVisit.contains(station);
+}
+
+public void markBusked(String station) {
+    buskedThisVisit.add(station);
+}
+
+public void resetBusking() {
+    buskedThisVisit.clear();
+}
 }
