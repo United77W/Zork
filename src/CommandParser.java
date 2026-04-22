@@ -127,8 +127,8 @@ public class CommandParser {
                             if (goingToLine6 || transferringToLine6) {
 
                                 if (Math.random() < 0.25) {
-                                    System.out.println("Attention passengers...");
-                                    System.out.println("There is a delay on Line 6 at Finch West Station.");
+                                    System.out.println("Attention Customers!");
+                                    System.out.println("There is a delay at Finch West Station.");
 
                                     try {
                                         int delay = 2000 + (int) (Math.random() * 4000);
@@ -139,7 +139,7 @@ public class CommandParser {
 
                                     SoundManager.playLine6DelayAnnouncement();
 
-                                    System.out.println("We apologize for the delay. Service is now resuming.");
+                                    System.out.println("Attention All Customers, Regular Service Has Resumed At Finch West Station.");
                                 }
                             }
                         }
@@ -154,10 +154,10 @@ public class CommandParser {
                             return;
                         }
 
-                        if (Math.random() < 0.01) {
+                        if (Math.random() < 0.25) {
                             System.out.println("Service Advisory!");
                             System.out.println("There is no subway service between " + from + " and " + to
-                                    + " due to an emergency alarm activation. Shuttle buses are not operating!");
+                                    + " due to an emergency alarm activation. Shuttle buses are operating!");
 
                             closedParts.add(parts);
                             return;
