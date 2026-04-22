@@ -136,7 +136,7 @@ public class SoundManager {
 
             clip.start();
 
-            // wait until sound finishes
+
             Thread.sleep(clip.getMicrosecondLength() / 1000);
 
             clip.close();
