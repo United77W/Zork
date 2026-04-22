@@ -145,4 +145,8 @@ public class SoundManager {
             e.printStackTrace();
         }
     }
+
+    public static void playLine5RestoredAnnouncement() {
+    playBlocking("sounds/line5_restored.wav");
+}
 }

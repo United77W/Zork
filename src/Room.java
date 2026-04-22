@@ -11,7 +11,8 @@ public class Room {
 
     private boolean puzzleSolved = false;
 
-    public Room(String id, String name, String description, Map<String, String> exits, List<Item> items, List<String> lines) {
+    public Room(String id, String name, String description, Map<String, String> exits, List<Item> items,
+            List<String> lines) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -19,6 +20,7 @@ public class Room {
         this.items = items;
         this.lines = lines;
     }
+
     //
     public String getId() {
         return id;
@@ -58,15 +60,14 @@ public class Room {
             for (Item item : items) {
                 sb.append(item.getName()).append(", ");
             }
-            // Remove trailing comma and space
             sb.setLength(sb.length() - 2);
             sb.append(".\n");
         }
 
         if (!exits.isEmpty()) {
             sb.append("Exits: ");
-            for (String direction : exits.keySet()) {
-                sb.append(direction).append(", ");
+            for (String destination : exits.values()) {
+                sb.append(destination).append(", ");
             }
             sb.setLength(sb.length() - 2);
             sb.append(".\n");
@@ -74,6 +75,7 @@ public class Room {
 
         return sb.toString();
     }
+
     public boolean isPuzzleSolved() {
         return puzzleSolved;
     }

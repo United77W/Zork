@@ -42,10 +42,11 @@ public class Game {
 
             if (player.getPowerStationsRepaired() >= 4) {
                 player.setLine5Restored(true);
-
+                commandParser.setLine5Down(false);
                 System.out.println("LINE 5 RESTORED");
                 System.out.println("You have successfully fixed all power stations!");
                 System.out.println("The slow Shuttle Buses are no longer needed");
+                SoundManager.playLine5RestoredAnnouncement();
 
             }
         }

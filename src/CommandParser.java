@@ -11,6 +11,10 @@ public class CommandParser {
 
     private Set<String> closedParts = new HashSet<>();
 
+    public void setLine5Down(boolean value) {
+        this.Line5Down = value;
+    }
+
     private Set<String> powerStations = Set.of(
             "Power Station",
             "Don Valley Station",
