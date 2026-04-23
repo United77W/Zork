@@ -1,3 +1,5 @@
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
@@ -120,6 +122,35 @@ public class CommandParser {
 
                         }
 
+                        if (nextRoomId.equals("Finch West Station")) {
+
+                            boolean goingToLine6 = "Line 6".equals(usedLine);
+
+                            boolean transferringToLine6 = currentRoom.getLines() != null &&
+                                    nextRoom.getLines() != null &&
+                                    currentRoom.getLines().contains("Line 1") &&
+                                    nextRoom.getLines().contains("Line 6");
+
+                            if (goingToLine6 || transferringToLine6) {
+
+                                if (Math.random() < 0.25) {
+                                    System.out.println("Attention Customers!");
+                                    System.out.println("There is a delay at Finch West Station.");
+
+                                    try {
+                                        int delay = 2000 + (int) (Math.random() * 4000);
+                                        Thread.sleep(delay);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    SoundManager.playLine6DelayAnnouncement();
+
+                                    System.out.println("Attention All Customers, Regular Service Has Resumed At Finch West Station.");
+                                }
+                            }
+                        }
+
                         String from = player.getCurrentRoomId();
                         String to = nextRoomId;
 
@@ -166,6 +197,8 @@ public class CommandParser {
 
                         player.setCurrentRoomId(nextRoomId);
 
+                        playOccasionalAnnouncement(nextRoomId, player.getCurrentLine());
+
                         if (!player.hasDiscovered(nextRoomId)) {
                             System.out.println("NEW STATION DISCOVERED!");
                             System.out.println("+$10");
@@ -199,7 +232,6 @@ public class CommandParser {
                             isBeingRobbed = true;
                         }
 
-                        // Random fare inspector event
                         if (Math.random() < 0.3) {
                             System.out.println("The Provincial Offences Officers boarded your train.");
                             if (player.hasItem("TTC_Employee_Card")) {
@@ -450,48 +482,6 @@ public class CommandParser {
             default:
                 System.out.println("You aren't sure how to use this.");
                 break;
-        }
-    }
-
-    private void handleShuttleTravel(Set<String> allowed, String input, Player player,
-            Map<String, Room> rooms, String type) {
-
-        String targetInput = input.substring("shuttle".length()).trim();
-
-        String matched = null;
-        for (String s : allowed) {
-            String normalizedStation = s.toLowerCase().replace(" station", "");
-            String userInput = targetInput.toLowerCase().replace(" station", "");
-
-            if (normalizedStation.contains(userInput)) {
-                matched = s;
-                break;
-            }
-        }
-
-        if (matched == null) {
-            System.out.println("Shuttle cannot go there.");
-            return;
-        }
-
-        if (type.equals("emergency")) {
-            System.out.println("Shuttle Buses Have Arrived");
-
-            if (Math.random() < 0.3) {
-                System.out.println("Unfortunately, traffic.");
-            }
-
-        } else {
-            System.out.println("You are currently boarding the crowded Line 5 Replacement Bus");
-        }
-
-        player.setCurrentRoomId(matched);
-
-        System.out.println("Arriving at " + matched);
-
-        Room newRoom = rooms.get(matched);
-        if (newRoom != null) {
-            System.out.println(newRoom.getLongDescription());
         }
     }
 }
