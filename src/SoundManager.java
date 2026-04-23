@@ -136,7 +136,6 @@ public class SoundManager {
 
             clip.start();
 
-
             Thread.sleep(clip.getMicrosecondLength() / 1000);
 
             clip.close();
@@ -147,6 +146,10 @@ public class SoundManager {
     }
 
     public static void playLine5RestoredAnnouncement() {
-    playBlocking("sounds/line5_restored.wav");
-}
+        playBlocking("sounds/line5_restored.wav");
+    }
+
+    public static void playServiceDisruptionChime() {
+        playBlocking("sounds/service.wav");
+    }
 }

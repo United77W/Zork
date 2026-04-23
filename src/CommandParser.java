@@ -1,13 +1,16 @@
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class CommandParser {
-    // This variable stays at the top to track the game state
     private boolean isBeingRobbed = false;
 
     private boolean Line5Down = true;
+
+    private static final String FINCH_WEST = "Finch West Station";
+    private static final String LINE_6 = "Line 6";
 
     private Set<String> closedParts = new HashSet<>();
 
@@ -27,6 +30,8 @@ public class CommandParser {
             "Eglinton Station",
             "Don Valley Station",
             "Kennedy Station");
+
+    private Map<String, Set<String>> disruptionShuttles = new HashMap<>();
 
     private Map<String, Set<String>> shuttleBuses = Map.of(
             "Mount Dennis Station", Set.of("Cedarvale Station"),
@@ -125,12 +130,22 @@ public class CommandParser {
                             return;
                         }
 
-                        if (Math.random() < 0.01) {
+                        if (Math.random() < 0.5) {
                             System.out.println("Service Advisory!");
                             System.out.println("There is no subway service between " + from + " and " + to
-                                    + " due to an emergency alarm activation. Shuttle buses are not operating!");
+                                    + " due to an emergency alarm activation. Shuttle buses are operating!");
+                            SoundManager.playServiceDisruptionChime();
 
                             closedParts.add(parts);
+
+                            disruptionShuttles.putIfAbsent(from, new HashSet<>());
+                            disruptionShuttles.putIfAbsent(to, new HashSet<>());
+
+                            disruptionShuttles.get(from).add(to);
+                            disruptionShuttles.get(to).add(from);
+
+                            System.out.println(
+                                    "Shuttle buses are operating between " + from + " and " + to + ".");
                             return;
                         }
 
@@ -356,53 +371,27 @@ public class CommandParser {
                     return;
                 }
 
-                if (!Line5Down) {
-                    System.out.println("Line 5 Eglinton is running.");
-                    return;
-                }
-
                 String current = player.getCurrentRoomId();
 
-                if (!Line5Stations.contains(current)) {
-                    System.out.println("Shuttle buses only operate along Line 5 Eglinton.");
+                Set<String> emergency = disruptionShuttles.get(current);
+
+                if (emergency != null && !emergency.isEmpty()) {
+                    System.out.println("No Subway Service, Shuttle Buses Are Operating!");
+                    handleShuttleTravel(emergency, input, player, rooms, "emergency");
                     return;
                 }
 
-                Set<String> allowed = shuttleBuses.get(current);
+                if (Line5Down && Line5Stations.contains(current)) {
+                    Set<String> planned = shuttleBuses.get(current);
 
-                if (allowed == null || allowed.isEmpty()) {
-                    System.out.println("There are no Shuttle Buses at this station.");
-                    return;
-                }
-
-                String targetInput = input.substring(command.length()).trim();
-
-                String matchedStation = null;
-
-                for (String s : allowed) {
-                    String normalizedStation = s.toLowerCase().replace(" station", "");
-                    String userInput = targetInput.toLowerCase().replace(" station", "");
-
-                    if (normalizedStation.contains(userInput)) {
-                        matchedStation = s;
-                        break;
+                    if (planned != null && !planned.isEmpty()) {
+                        System.out.println("Line 5 Replacement Shuttle Bus.");
+                        handleShuttleTravel(planned, input, player, rooms, "planned");
+                        return;
                     }
                 }
 
-                if (matchedStation == null) {
-                    System.out.println("Shuttle cannot go to " + targetInput + " from here.");
-                    return;
-                }
-
-                player.setCurrentRoomId(matchedStation);
-
-                System.out.println("Arriving at " + matchedStation);
-
-                Room newRoom = rooms.get(matchedStation);
-                if (newRoom != null) {
-                    System.out.println(newRoom.getLongDescription());
-                }
-
+                System.out.println("There are no shuttle buses at this station.");
                 break;
         }
 
@@ -461,6 +450,48 @@ public class CommandParser {
             default:
                 System.out.println("You aren't sure how to use this.");
                 break;
+        }
+    }
+
+    private void handleShuttleTravel(Set<String> allowed, String input, Player player,
+            Map<String, Room> rooms, String type) {
+
+        String targetInput = input.substring("shuttle".length()).trim();
+
+        String matched = null;
+        for (String s : allowed) {
+            String normalizedStation = s.toLowerCase().replace(" station", "");
+            String userInput = targetInput.toLowerCase().replace(" station", "");
+
+            if (normalizedStation.contains(userInput)) {
+                matched = s;
+                break;
+            }
+        }
+
+        if (matched == null) {
+            System.out.println("Shuttle cannot go there.");
+            return;
+        }
+
+        if (type.equals("emergency")) {
+            System.out.println("Shuttle Buses Have Arrived");
+
+            if (Math.random() < 0.3) {
+                System.out.println("Unfortunately, traffic.");
+            }
+
+        } else {
+            System.out.println("You are currently boarding the crowded Line 5 Replacement Bus");
+        }
+
+        player.setCurrentRoomId(matched);
+
+        System.out.println("Arriving at " + matched);
+
+        Room newRoom = rooms.get(matched);
+        if (newRoom != null) {
+            System.out.println(newRoom.getLongDescription());
         }
     }
 }
