@@ -382,7 +382,8 @@ public class CommandParser {
                 player.addMoney(1000.0);
                 System.out.println("Admin funds added.");
                 break;
-
+            case "EglintonFixed":
+                Line5Down = false;
             case "balance":
                 System.out.println("PRESTO BALANCE: $" + player.getPrestoBalance());
                 break;

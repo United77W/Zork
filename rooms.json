@@ -54,8 +54,8 @@
     "exits": {
       "south": "Bloor-Yonge Station",
       "north": "Sheppard-Yonge Station",
-      "east": "Avenue Station",
-      "west": "Cedarvale Station"
+      "east": "Don Valley Station",
+      "west": "Avenue Station"
     }
   },
   "Sheppard-Yonge Station": {
