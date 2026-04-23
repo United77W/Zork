@@ -148,16 +148,15 @@ public class SoundManager {
         playBlocking("sounds/line5_restored.wav");
     }
 
-<<<<<<< HEAD
     public static void playServiceDisruptionChime() {
         playBlocking("sounds/service.wav");
-=======
+    }
+
     public static void playLine6DelayAnnouncement() {
         playBlocking("sounds/finchwest_delay_line6.wav");
     }
 
     public static void playSound(String filePath) {
         playBlocking(filePath);
->>>>>>> 6832f952fe415c94cff777afe6ad64a3c7491124
     }
 }

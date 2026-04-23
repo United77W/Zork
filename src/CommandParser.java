@@ -1,10 +1,8 @@
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.List;
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class CommandParser {
     private boolean isBeingRobbed = false;
@@ -146,7 +144,8 @@ public class CommandParser {
 
                                     SoundManager.playLine6DelayAnnouncement();
 
-                                    System.out.println("Attention All Customers, Regular Service Has Resumed At Finch West Station.");
+                                    System.out.println(
+                                            "Attention All Customers, Regular Service Has Resumed At Finch West Station.");
                                 }
                             }
                         }
@@ -429,6 +428,56 @@ public class CommandParser {
 
     }
 
+    private void handleShuttleTravel(Set<String> availableStops, String input,
+            Player player, Map<String, Room> rooms, String type) {
+
+        String command = "shuttle";
+        String targetStation = input.substring(command.length()).trim();
+
+        if (targetStation.isEmpty()) {
+            System.out.println("Where do you want to go?");
+            return;
+        }
+
+        String destination = null;
+
+        for (String stop : availableStops) {
+            if (stop.equalsIgnoreCase(targetStation) ||
+                    stop.toLowerCase().contains(targetStation.toLowerCase())) {
+                destination = stop;
+                break;
+            }
+        }
+
+        if (destination == null) {
+            System.out.println("No shuttle bus availible here.");
+            return;
+        }
+
+        if (type.equals("emergency")) {
+            System.out.println("You board the Shuttle Bus");
+        } else {
+            System.out.println("You board the Line 5 Replacement Shuttle Bus...");
+        }
+
+        try {
+            Thread.sleep(1500); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        player.setCurrentRoomId(destination);
+
+        System.out.println("You arrives at " + destination + ".");
+
+        Room newRoom = rooms.get(destination);
+        if (newRoom != null) {
+            System.out.println(newRoom.getLongDescription());
+        }
+
+        System.out.println("No fare charged (shuttle buses).");
+    }
+
     private void handleAttack(String itemName, Player player) {
         Item weapon = null;
         for (Item i : player.getInventory()) {
@@ -482,6 +531,14 @@ public class CommandParser {
             default:
                 System.out.println("You aren't sure how to use this.");
                 break;
+        }
+    }
+
+    private void playOccasionalAnnouncement(String stationId, String line) {
+        if (Math.random() < 0.3) {
+            System.out.println("Attention Customers!");
+
+            SoundManager.playSound("sounds/generic_announcement.wav");
         }
     }
 }
