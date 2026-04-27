@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private String currentRoomId;
@@ -9,8 +9,8 @@ public class Player {
     private double prestoBalance;
     private double cash;
     private String currentLine;
-    private Set<String> discoveredStations = new HashSet<>();
-    private Set<String> buskedThisVisit = new HashSet<>();
+    private List<String> discoveredStations = new ArrayList<>();
+    private List<String> buskedThisVisit = new ArrayList<>();
 
     private int powerStationsRepaired;
 
@@ -19,8 +19,8 @@ public class Player {
     public Player(String startingRoomId) {
         this.currentRoomId = startingRoomId;
         this.inventory = new ArrayList<>();
-        this.prestoBalance = 10.00;
-        this.cash = 10.00;
+        this.prestoBalance = 5.00;
+        this.cash = 5.00;
 
         this.powerStationsRepaired = 0;
     }
@@ -94,23 +94,30 @@ public class Player {
     public void setCurrentLine(String line) {
         this.currentLine = line;
     }
-public boolean hasDiscovered(String station) {
-    return discoveredStations.contains(station);
+
+    public boolean hasDiscovered(String station) {
+        return discoveredStations.contains(station);
+    }
+
+    public void discoverStation(String station) {
+        if (!discoveredStations.contains(station)) {
+            discoveredStations.add(station);
+        }
+    }
+
+    public boolean hasBuskedHere(String station) {
+        return buskedThisVisit.contains(station);
+    }
+
+   
+
+    public void markBusked(String station) {
+    if (!buskedThisVisit.contains(station)) {
+        buskedThisVisit.add(station);
+    }
 }
 
-public void discoverStation(String station) {
-    discoveredStations.add(station);
-}
-
-public boolean hasBuskedHere(String station) {
-    return buskedThisVisit.contains(station);
-}
-
-public void markBusked(String station) {
-    buskedThisVisit.add(station);
-}
-
-public void resetBusking() {
-    buskedThisVisit.clear();
-}
+    public void resetBusking() {
+        buskedThisVisit.clear();
+    }
 }

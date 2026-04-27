@@ -471,6 +471,17 @@ public class CommandParser {
 
         player.setCurrentRoomId(destination);
 
+       
+        if (!player.hasDiscovered(destination)) {
+            System.out.println("NEW STATION DISCOVERED!");
+            System.out.println("+$10");
+            player.addMoney(10.0);
+            player.discoverStation(destination);
+        }
+
+       
+        player.resetBusking();
+
         System.out.println("You arrives at " + destination + ".");
 
         Room newRoom = rooms.get(destination);
@@ -505,13 +516,13 @@ public class CommandParser {
             System.out.println("You try to defend yourself with a " + weapon.getName() + "...");
             System.out.println("The crackhead laughs. EUGUUUGHUHUUHGHG. 'Is that a joke?'");
             System.out.println("He shoves you and steals your PRESTO card from your pocket before running away.");
-            
+
             for (int i = 0; i < player.getInventory().size(); i++) {
-        if (player.getInventory().get(i).getName().equalsIgnoreCase("presto")) {
-            player.getInventory().remove(i);
-            break; 
-        }
-    }
+                if (player.getInventory().get(i).getName().equalsIgnoreCase("presto")) {
+                    player.getInventory().remove(i);
+                    break;
+                }
+            }
             player.addMoney(-5.0);
             isBeingRobbed = false;
         } else {
