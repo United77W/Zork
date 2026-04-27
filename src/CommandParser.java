@@ -30,10 +30,6 @@ public class CommandParser {
             "Eglinton Station",
             "Don Valley Station",
             "Kennedy Station");
-            
-    private Map<String, List<String>> busRoutes = Map.of(
-            "25b", List.of("Broadview Station", "Don Valley Station", "Don Mills Station"));
-
 
     private Map<String, Set<String>> disruptionShuttles = new HashMap<>();
 
@@ -466,7 +462,7 @@ public class CommandParser {
         }
 
         try {
-            Thread.sleep(1500); 
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -478,28 +474,6 @@ public class CommandParser {
         Room newRoom = rooms.get(destination);
         if (newRoom != null) {
             System.out.println(newRoom.getLongDescription());
-        }
-
-                break;
-
-            case "busk":
-                String currentStation = player.getCurrentRoomId();
-
-                if (player.hasBuskedHere(currentStation)) {
-                    System.out.println("You already busked here this visit.");
-                } else {
-                    System.out.println("You start busking...");
-                    System.out.println("People toss you some money!");
-                    System.out.println("+$5");
-                    player.addMoney(5.0);
-                    player.markBusked(currentStation);
-                }
-                break;
-
-            default:
-                System.out.println("I don't understand that command.");
-                break;
-
         }
 
         System.out.println("No fare charged (shuttle buses).");
