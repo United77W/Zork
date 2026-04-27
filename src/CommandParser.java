@@ -398,6 +398,19 @@ public class CommandParser {
                 System.out.println(
                         "Commands: go [dir], look, take [item], drop [item], use [item], inventory, attack [item], run, busk, help");
                 break;
+            case "busk":
+                String currentStation = player.getCurrentRoomId();
+
+                if (player.hasBuskedHere(currentStation)) {
+                    System.out.println("You already busked here this visit.");
+                } else {
+                    System.out.println("You start busking...");
+                    System.out.println("People toss you some money!");
+                    System.out.println("+$5");
+                    player.addMoney(5.0);
+                    player.markBusked(currentStation);
+                }
+                break;
 
             case "shuttle":
                 if (words.length < 2) {
@@ -471,7 +484,6 @@ public class CommandParser {
 
         player.setCurrentRoomId(destination);
 
-       
         if (!player.hasDiscovered(destination)) {
             System.out.println("NEW STATION DISCOVERED!");
             System.out.println("+$10");
@@ -479,7 +491,6 @@ public class CommandParser {
             player.discoverStation(destination);
         }
 
-       
         player.resetBusking();
 
         System.out.println("You arrives at " + destination + ".");
@@ -562,4 +573,5 @@ public class CommandParser {
             SoundManager.playSound("sounds/generic_announcement.wav");
         }
     }
+
 }
