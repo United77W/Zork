@@ -8,6 +8,7 @@ public class CommandParser {
     private boolean isBeingRobbed = false;
 
     private boolean Line5Down = true;
+    private boolean soundEnabled = true;
 
     private boolean evadingFare = false;
 
@@ -145,8 +146,11 @@ public class CommandParser {
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
+                                    
 
-                                    SoundManager.playLine6DelayAnnouncement();
+                                    if (soundEnabled){
+                                        SoundManager.playLine6DelayAnnouncement();
+                                    }
 
                                     System.out.println(
                                             "Attention All Customers, Regular Service Has Resumed At Finch West Station.");
@@ -168,7 +172,9 @@ public class CommandParser {
                             System.out.println("Service Advisory!");
                             System.out.println("There is no subway service between " + from + " and " + to
                                     + " due to an emergency alarm activation. Shuttle buses are operating!");
+                              if (soundEnabled){      
                             SoundManager.playServiceDisruptionChime();
+                              }
 
                             closedParts.add(parts);
 
@@ -218,9 +224,11 @@ public class CommandParser {
 
                         System.out.println("Please stand clear of the doors");
 
+                        if (soundEnabled){
                         SoundManager.playDoorChimeBlocking();
 
                         SoundManager.playAnnouncement(nextRoomId, player.getCurrentLine());
+                        }
                         System.out.println("Arriving at " + nextRoomId);
 
                         Room newRoom = rooms.get(nextRoomId);
@@ -426,6 +434,22 @@ public class CommandParser {
                     player.markBusked(currentStation);
                 }
                 break;
+            case "sound":
+                if (words.length < 2) {
+                    System.out.println("Use: sound on / sound off");
+                    break;
+                }
+
+                if (words[1].equals("off")) {
+                    soundEnabled = false;
+                    System.out.println("Sound disabled.");
+                } else if (words[1].equals("on")) {
+                    soundEnabled = true;
+                    System.out.println("Sound enabled.");
+                } else {
+                    System.out.println("Use: sound on / sound off");
+                }
+                break;
 
             case "evade":
                 evadingFare = true;
@@ -589,7 +613,9 @@ public class CommandParser {
         if (Math.random() < 0.3) {
             System.out.println("Attention Customers!");
 
-            SoundManager.playSound("sounds/generic_announcement.wav");
+            if (soundEnabled) {
+                SoundManager.playSound("sounds/generic_announcement.wav");
+            }
         }
     }
 }
