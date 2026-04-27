@@ -160,7 +160,7 @@ public class CommandParser {
                             return;
                         }
 
-                        if (Math.random() < 0.5) {
+                        if (Math.random() < 0.10) {
                             System.out.println("Service Advisory!");
                             System.out.println("There is no subway service between " + from + " and " + to
                                     + " due to an emergency alarm activation. Shuttle buses are operating!");
