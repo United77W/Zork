@@ -27,6 +27,7 @@ public class CommandParser {
     private Set<String> Line5Stations = Set.of(
             "Mount Dennis Station",
             "Cedarvale Station",
+            "Avenue Station",
             "Eglinton Station",
             "Don Valley Station",
             "Kennedy Station");
@@ -35,8 +36,9 @@ public class CommandParser {
 
     private Map<String, Set<String>> shuttleBuses = Map.of(
             "Mount Dennis Station", Set.of("Cedarvale Station"),
-            "Cedarvale Station", Set.of("Mount Dennis Station", "Eglinton Station"),
-            "Eglinton Station", Set.of("Cedarvale Station", "Don Valley Station"),
+            "Cedarvale Station", Set.of("Mount Dennis Station", "Avenue Station"),
+            "Avenue Station", Set.of("Cedarvale Station", "Eglinton Station"),
+            "Eglinton Station", Set.of("Avenue Station", "Don Valley Station"),
             "Don Valley Station", Set.of("Eglinton Station", "Kennedy Station"),
             "Kennedy Station", Set.of("Don Valley Station"));
 
