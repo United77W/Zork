@@ -55,7 +55,7 @@
       "south": "Bloor-Yonge Station",
       "north": "Sheppard-Yonge Station",
       "east": "Don Valley Station",
-      "west": "Cedarvale Station"
+      "west": "Avenue Station"
     }
   },
   "Sheppard-Yonge Station": {
@@ -83,6 +83,15 @@
     "exits": {
       "west": "Sheppard-Yonge Station",
       "south": "Don Valley Station"
+    }
+  },
+  "Avenue Station": {
+    "name": "Avenue Station",
+    "description": "You are in Avenue Station, the deepest station in the TTC network.",
+    "lines": ["Line 5"],
+    "exits": {
+      "west": "Cedarvale Station",
+      "east": "Eglinton Station"
     }
   },
   "Museum Station": {
@@ -192,7 +201,7 @@
     "description": "You are in Cedarvale Station, the station is a hub for commuters heading to the suburbs.",
     "lines": ["Line 1", "Line 5"],
     "exits": {
-      "east": "Eglinton Station",
+      "east": "Avenue Station",
       "south": "Spadina Station",
       "west": "Mount Dennis Station",
       "north": "Finch West Station"

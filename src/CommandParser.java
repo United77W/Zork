@@ -1,12 +1,22 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.List;
 
 public class CommandParser {
-    // This variable stays at the top to track the game state
     private boolean isBeingRobbed = false;
 
     private boolean Line5Down = true;
+
+    private static final String FINCH_WEST = "Finch West Station";
+    private static final String LINE_6 = "Line 6";
+
+    private Set<String> closedParts = new HashSet<>();
+
+    public void setLine5Down(boolean value) {
+        this.Line5Down = value;
+    }
 
     private Set<String> powerStations = Set.of(
             "Power Station",
@@ -24,12 +34,19 @@ public class CommandParser {
     private Map<String, List<String>> busRoutes = Map.of(
             "25b", List.of("Broadview Station", "Don Valley Station", "Don Mills Station"));
 
+
+    private Map<String, Set<String>> disruptionShuttles = new HashMap<>();
+
     private Map<String, Set<String>> shuttleBuses = Map.of(
             "Mount Dennis Station", Set.of("Cedarvale Station"),
             "Cedarvale Station", Set.of("Mount Dennis Station", "Eglinton Station"),
             "Eglinton Station", Set.of("Cedarvale Station", "Don Valley Station"),
             "Don Valley Station", Set.of("Eglinton Station", "Kennedy Station"),
             "Kennedy Station", Set.of("Don Valley Station"));
+
+    private String makeParts(String from, String to) {
+        return from + "<->" + to;
+    }
 
     public void parse(String input, Player player, Map<String, Room> rooms) {
         String[] words = input.trim().toLowerCase().split("\\s+");
@@ -50,9 +67,22 @@ public class CommandParser {
                 if (words.length < 2) {
                     System.out.println("Go where?");
                 } else {
-                    String direction = words[1];
+                    String targetStation = input.substring(command.length()).trim();
                     Room currentRoom = rooms.get(player.getCurrentRoomId());
-                    String nextRoomId = currentRoom.getExits().get(direction);
+                    String nextRoomId = null;
+
+                    for (String exit : currentRoom.getExits().values()) {
+                        if (exit.equalsIgnoreCase(targetStation) ||
+                                exit.toLowerCase().contains(targetStation.toLowerCase())) {
+                            nextRoomId = exit;
+                            break;
+                        }
+                    }
+
+                    if (nextRoomId == null) {
+                        System.out.println("You can't go directly to " + targetStation + " from here.");
+                        return;
+                    }
 
                     if (nextRoomId != null) {
 
@@ -89,9 +119,68 @@ public class CommandParser {
                                 System.out.println("Line 5 Eglinton Is Down");
                                 System.out.println(
                                         "Shuttle Buses Are Operating. The TTC apoligize for this inconvience.");
-                                break;
+                                return;
                             }
 
+                        }
+
+                        if (nextRoomId.equals("Finch West Station")) {
+
+                            boolean goingToLine6 = "Line 6".equals(usedLine);
+
+                            boolean transferringToLine6 = currentRoom.getLines() != null &&
+                                    nextRoom.getLines() != null &&
+                                    currentRoom.getLines().contains("Line 1") &&
+                                    nextRoom.getLines().contains("Line 6");
+
+                            if (goingToLine6 || transferringToLine6) {
+
+                                if (Math.random() < 0.25) {
+                                    System.out.println("Attention Customers!");
+                                    System.out.println("There is a delay at Finch West Station.");
+
+                                    try {
+                                        int delay = 2000 + (int) (Math.random() * 4000);
+                                        Thread.sleep(delay);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    SoundManager.playLine6DelayAnnouncement();
+
+                                    System.out.println(
+                                            "Attention All Customers, Regular Service Has Resumed At Finch West Station.");
+                                }
+                            }
+                        }
+
+                        String from = player.getCurrentRoomId();
+                        String to = nextRoomId;
+
+                        String parts = makeParts(from, to);
+
+                        if (closedParts.contains(parts)) {
+                            System.out.println("Subway Closures!");
+                            return;
+                        }
+
+                        if (Math.random() < 0.5) {
+                            System.out.println("Service Advisory!");
+                            System.out.println("There is no subway service between " + from + " and " + to
+                                    + " due to an emergency alarm activation. Shuttle buses are operating!");
+                            SoundManager.playServiceDisruptionChime();
+
+                            closedParts.add(parts);
+
+                            disruptionShuttles.putIfAbsent(from, new HashSet<>());
+                            disruptionShuttles.putIfAbsent(to, new HashSet<>());
+
+                            disruptionShuttles.get(from).add(to);
+                            disruptionShuttles.get(to).add(from);
+
+                            System.out.println(
+                                    "Shuttle buses are operating between " + from + " and " + to + ".");
+                            return;
                         }
 
                         double fare = 3.30;
@@ -110,6 +199,8 @@ public class CommandParser {
                         }
 
                         player.setCurrentRoomId(nextRoomId);
+
+                        playOccasionalAnnouncement(nextRoomId, player.getCurrentLine());
 
                         if (!player.hasDiscovered(nextRoomId)) {
                             System.out.println("NEW STATION DISCOVERED!");
@@ -133,7 +224,7 @@ public class CommandParser {
                         System.out.println(newRoom.getLongDescription());
 
                         System.out.println("Remaining Balance: $" + player.getPrestoBalance());
-                        System.out.println("You move " + direction + ".");
+                        System.out.println("You arrived at " + nextRoomId + ".");
 
                         if (player.getCurrentRoomId().equals("Broadview Station")) {
                             System.out.println("\n--- CONFRONTATION ---");
@@ -144,7 +235,6 @@ public class CommandParser {
                             isBeingRobbed = true;
                         }
 
-                        // Random fare inspector event
                         if (Math.random() < 0.3) {
                             System.out.println("The Provincial Offences Officers boarded your train.");
                             if (player.hasItem("TTC_Employee_Card")) {
@@ -296,7 +386,8 @@ public class CommandParser {
                 player.addMoney(1000.0);
                 System.out.println("Admin funds added.");
                 break;
-
+            case "EglintonFixed":
+                Line5Down = false;
             case "balance":
                 System.out.println("PRESTO BALANCE: $" + player.getPrestoBalance());
                 break;
@@ -310,56 +401,84 @@ public class CommandParser {
                         "Commands: go [dir], look, take [item], drop [item], use [item], inventory, attack [item], run, busk, help");
                 break;
 
-            case "shuttlebus":
+            case "shuttle":
                 if (words.length < 2) {
-                    System.out.println("Use: shuttlebus [station name]");
+                    System.out.println("Use: shuttle [station name]");
                     return;
                 }
-
-                if (!Line5Down) {
-                    System.out.println("Line 5 Eglinton is running. Shuttle buses are not required.");
-                    return;
-                }
-
-                String target = input.substring("shuttlebus".length()).trim();
-                target = Character.toUpperCase(target.charAt(0)) + target.substring(1).toLowerCase();
 
                 String current = player.getCurrentRoomId();
 
-                if (!Line5Stations.contains(current)) {
-                    System.out.println("Shuttle buses only operate on Line 5 stations.");
+                Set<String> emergency = disruptionShuttles.get(current);
+
+                if (emergency != null && !emergency.isEmpty()) {
+                    System.out.println("No Subway Service, Shuttle Buses Are Operating!");
+                    handleShuttleTravel(emergency, input, player, rooms, "emergency");
                     return;
                 }
 
-                Set<String> allowed = shuttleBuses.get(current);
+                if (Line5Down && Line5Stations.contains(current)) {
+                    Set<String> planned = shuttleBuses.get(current);
 
-                if (allowed == null) {
-                    System.out.println("Shuttle Buses Are Not Avilible");
-                    return;
-                }
-
-                boolean valid = false;
-
-                for (String s : allowed) {
-                    if (s.equalsIgnoreCase(target)) {
-                        target = s;
-                        valid = true;
-                        break;
+                    if (planned != null && !planned.isEmpty()) {
+                        System.out.println("Line 5 Replacement Shuttle Bus.");
+                        handleShuttleTravel(planned, input, player, rooms, "planned");
+                        return;
                     }
                 }
 
-                if (!valid) {
-                    System.out.println("Shuttle cannot go to " + target + " from here.");
-                    return;
-                }
+                System.out.println("There are no shuttle buses at this station.");
+                break;
+        }
 
-                player.setCurrentRoomId(target);
-                System.out.println("Arriving at " + target);
+    }
 
-                Room newRoom = rooms.get(target);
-                if (newRoom != null) {
-                    System.out.println(newRoom.getLongDescription());
-                }
+    private void handleShuttleTravel(Set<String> availableStops, String input,
+            Player player, Map<String, Room> rooms, String type) {
+
+        String command = "shuttle";
+        String targetStation = input.substring(command.length()).trim();
+
+        if (targetStation.isEmpty()) {
+            System.out.println("Where do you want to go?");
+            return;
+        }
+
+        String destination = null;
+
+        for (String stop : availableStops) {
+            if (stop.equalsIgnoreCase(targetStation) ||
+                    stop.toLowerCase().contains(targetStation.toLowerCase())) {
+                destination = stop;
+                break;
+            }
+        }
+
+        if (destination == null) {
+            System.out.println("No shuttle bus availible here.");
+            return;
+        }
+
+        if (type.equals("emergency")) {
+            System.out.println("You board the Shuttle Bus");
+        } else {
+            System.out.println("You board the Line 5 Replacement Shuttle Bus...");
+        }
+
+        try {
+            Thread.sleep(1500); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        player.setCurrentRoomId(destination);
+
+        System.out.println("You arrives at " + destination + ".");
+
+        Room newRoom = rooms.get(destination);
+        if (newRoom != null) {
+            System.out.println(newRoom.getLongDescription());
+        }
 
                 break;
 
@@ -383,6 +502,7 @@ public class CommandParser {
 
         }
 
+        System.out.println("No fare charged (shuttle buses).");
     }
 
     private void handleAttack(String itemName, Player player) {
@@ -438,6 +558,14 @@ public class CommandParser {
             default:
                 System.out.println("You aren't sure how to use this.");
                 break;
+        }
+    }
+
+    private void playOccasionalAnnouncement(String stationId, String line) {
+        if (Math.random() < 0.3) {
+            System.out.println("Attention Customers!");
+
+            SoundManager.playSound("sounds/generic_announcement.wav");
         }
     }
 }
