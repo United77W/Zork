@@ -20,6 +20,9 @@ public class CommandParser {
             "Eglinton Station",
             "Don Valley Station",
             "Kennedy Station");
+            
+    private Map<String, List<String>> busRoutes = Map.of(
+            "25b", List.of("Broadview Station", "Don Valley Station", "Don Mills Station"));
 
     private Map<String, Set<String>> shuttleBuses = Map.of(
             "Mount Dennis Station", Set.of("Cedarvale Station"),
@@ -377,7 +380,7 @@ public class CommandParser {
             default:
                 System.out.println("I don't understand that command.");
                 break;
-            
+
         }
 
     }
