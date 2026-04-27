@@ -252,7 +252,7 @@ public class CommandParser {
                                     System.out.println("You managed to avoid the fare inspection this time");
                                 }
                             } else if (player.hasItem("PRESTO")) {
-                                System.out.println("Your transfer is valid.");
+                                System.out.println("Your Transfer Is Valid.");
                             } else {
                                 System.out.println("You are caught for fare evasion! Fined $100.");
                                 player.addMoney(-100.0);
