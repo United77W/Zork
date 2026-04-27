@@ -9,6 +9,8 @@ public class CommandParser {
 
     private boolean Line5Down = true;
 
+    private boolean evadingFare = false;
+
     private static final String FINCH_WEST = "Finch West Station";
     private static final String LINE_6 = "Line 6";
 
@@ -182,8 +184,11 @@ public class CommandParser {
                         }
 
                         double fare = 3.30;
+
                         if (player.hasItem("TTC_Employee_Card")) {
                             System.out.println("You used your employee card.");
+                        } else if (evadingFare) {
+                            System.out.println("You slipped through without paying...");
                         } else {
                             if (!player.hasItem("PRESTO")) {
                                 System.out.println("You need a PRESTO card to travel on the TTC.");
@@ -224,6 +229,8 @@ public class CommandParser {
                         System.out.println("Remaining Balance: $" + player.getPrestoBalance());
                         System.out.println("You arrived at " + nextRoomId + ".");
 
+                        evadingFare = false;
+
                         if (player.getCurrentRoomId().equals("Broadview Station")) {
                             System.out.println("\n--- CONFRONTATION ---");
                             System.out.println(
@@ -232,11 +239,18 @@ public class CommandParser {
                             System.out.println("Commands: ATTACK [item], or RUN");
                             isBeingRobbed = true;
                         }
-
                         if (Math.random() < 0.3) {
                             System.out.println("The Provincial Offences Officers boarded your train.");
+
                             if (player.hasItem("TTC_Employee_Card")) {
                                 System.out.println("You have pretended to be a TTC employee.");
+                            } else if (evadingFare) {
+                                if (Math.random() < 0.6) {
+                                    System.out.println("You were caught evading fare! Fined $100.");
+                                    player.addMoney(-100.0);
+                                } else {
+                                    System.out.println("You managed to avoid the fare inspection this time");
+                                }
                             } else if (player.hasItem("PRESTO")) {
                                 System.out.println("Your transfer is valid.");
                             } else {
@@ -396,8 +410,9 @@ public class CommandParser {
                 break;
             case "help":
                 System.out.println(
-                        "Commands: go [dir], look, take [item], drop [item], use [item], inventory, attack [item], run, busk, help");
+                        "Commands: go [station], evade, look, take [item], drop [item], use [item], inventory, attack [item], run, shuttle, help");
                 break;
+
             case "busk":
                 String currentStation = player.getCurrentRoomId();
 
@@ -412,6 +427,10 @@ public class CommandParser {
                 }
                 break;
 
+            case "evade":
+                evadingFare = true;
+                System.out.println("You decide to sneak through the fare gates...");
+                break;
             case "shuttle":
                 if (words.length < 2) {
                     System.out.println("Use: shuttle [station name]");
@@ -573,5 +592,4 @@ public class CommandParser {
             SoundManager.playSound("sounds/generic_announcement.wav");
         }
     }
-
 }
