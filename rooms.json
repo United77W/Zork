@@ -83,8 +83,21 @@
     "exits": {
       "west": "Sheppard-Yonge Station",
       "south": "Don Valley Station"
-    }
+    },
+    "items": [
+      {
+        "id": "voltsmeter",
+        "name": "voltsmeter",
+        "description": "voltsmeter"
+      },
+      {
+        "id": "Screwdriver",
+        "name": "Screwdriver",
+        "description": "A small tool that could be useful in the future."
+      }
+    ]
   },
+  
   "Avenue Station": {
     "name": "Avenue Station",
     "description": "You are in Avenue Station, the deepest station in the TTC network.",
