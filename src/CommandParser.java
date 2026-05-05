@@ -700,11 +700,11 @@ public class CommandParser {
     }
 
     private void playOccasionalAnnouncement(String stationId, String line) {
-        if (Math.random() < 0.3) {
-            System.out.println("Attention Customers!");
+        if (Math.random() < 0.5) {
+            System.out.println("Please Stand Clear Of The Yellow Line!");
 
             if (soundEnabled) {
-                SoundManager.playSound("sounds/generic_announcement.wav");
+                SoundManager.playSound("sounds/generic.wav");
             }
         }
     }
