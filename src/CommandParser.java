@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class CommandParser {
-    private boolean isBeingRobbed = false;
+    private boolean gettingRobbed = false;
 
     private boolean Line5Down = true;
     private boolean soundEnabled = true;
@@ -65,8 +65,8 @@ public class CommandParser {
 
         String command = words[0];
 
-        if (isBeingRobbed && !command.equals("attack") && !command.equals("run") && !command.equals("inventory")) {
-            System.out.println("The robber is blocking you! You must ATTACK or RUN!");
+        if (gettingRobbed && !command.equals("attack") && !command.equals("run") && !command.equals("inventory")) {
+            System.out.println("The robber is blocking you. You must ATTACK or RUN");
             return;
         }
 
@@ -222,7 +222,7 @@ public class CommandParser {
                                 }
                                 System.out.println("You tapped your PRESTO card ($" + fare + ")");
                             } else {
-                                System.out.println("You snuck onto the bus without paying");
+                                System.out.println("You snuck onto the bus without paying, you're tuff");
                             }
 
                         } else {
@@ -284,7 +284,7 @@ public class CommandParser {
                                     "A crackhead steps out: 'EUGHHGUEHUUGH! Give me your PRESTO card and your money!'");
                             System.out.println("The exits are blocked! What will you do?");
                             System.out.println("Commands: ATTACK [item], or RUN");
-                            isBeingRobbed = true;
+                            gettingRobbed = true;
                         }
                         if (Math.random() < 0.3) {
                             System.out.println("The Provincial Offences Officers boarded your train.");
@@ -422,22 +422,22 @@ public class CommandParser {
                 break;
 
             case "attack":
-                if (!isBeingRobbed) {
+                if (!gettingRobbed) {
                     System.out.println("There is nothing to attack here.");
                 } else if (words.length < 2) {
                     System.out.println("Attack with what?");
                 } else {
-                    handleAttack(words[1], player);
+                    attack(words[1], player);
                 }
                 break;
 
             case "run":
-                if (isBeingRobbed) {
-                    System.out.println("You bolt toward the stairs and escape back to Bloor-Yonge!");
+                if (gettingRobbed) {
+                    System.out.println("You run toward the stairs and escape back to Bloor-Yonge!");
                     player.setCurrentRoomId("Bloor-Yonge Station");
-                    isBeingRobbed = false;
+                    gettingRobbed = false;
                 } else {
-                    System.out.println("You run in a small circle.");
+                    System.out.println("You run in a small circle like a dummy.");
                 }
                 break;
 
@@ -493,7 +493,7 @@ public class CommandParser {
                 if (words.length < 2) {
                     System.out.println("Fix what?");
                 } else if (words[1].equalsIgnoreCase("generator")) {
-                    handleFixGenerator(player, rooms);
+                    fixGenerator(player, rooms);
                 } else {
                     System.out.println("You can't fix that.");
                 }
@@ -515,7 +515,7 @@ public class CommandParser {
 
                 if (emergency != null && !emergency.isEmpty()) {
                     System.out.println("No Subway Service, Shuttle Buses Are Operating!");
-                    handleShuttleTravel(emergency, input, player, rooms, "emergency");
+                    shuttleTravel(emergency, input, player, rooms, "emergency");
                     return;
                 }
 
@@ -524,7 +524,7 @@ public class CommandParser {
 
                     if (planned != null && !planned.isEmpty()) {
                         System.out.println("Line 5 Replacement Shuttle Bus.");
-                        handleShuttleTravel(planned, input, player, rooms, "planned");
+                        shuttleTravel(planned, input, player, rooms, "planned");
                         return;
                     }
                 }
@@ -535,7 +535,7 @@ public class CommandParser {
 
     }
 
-    private void handleShuttleTravel(Set<String> availableStops, String input,
+    private void shuttleTravel(Set<String> availableStops, String input,
             Player player, Map<String, Room> rooms, String type) {
 
         String command = "shuttle";
@@ -584,7 +584,7 @@ public class CommandParser {
 
         player.resetBusking();
 
-        System.out.println("You arrives at " + destination + ".");
+        System.out.println("You arrived at " + destination + ".");
 
         Room newRoom = rooms.get(destination);
         if (newRoom != null) {
@@ -594,7 +594,7 @@ public class CommandParser {
         System.out.println("No fare charged (shuttle buses).");
     }
 
-    private void handleFixGenerator(Player player, Map<String, Room> rooms) {
+    private void fixGenerator(Player player, Map<String, Room> rooms) {
         Room room = rooms.get(player.getCurrentRoomId());
 
         if (!powerStations.contains(room.getId())) {
@@ -636,7 +636,7 @@ public class CommandParser {
         return BUS_25B.equalsIgnoreCase(line);
     }
 
-    private void handleAttack(String itemName, Player player) {
+    private void attack(String itemName, Player player) {
         Item weapon = null;
         for (Item i : player.getInventory()) {
             if (i.getName().equalsIgnoreCase(itemName)) {
@@ -655,7 +655,7 @@ public class CommandParser {
             System.out.println("You wave your " + weapon.getName() + " aggressively!");
             System.out.println("The crackhead's eyes widen. 'Woah! Take it easy! EUGHGUGHUGHGUGHHUG!'");
             System.out.println("He disappears into the tunnels. You are safe.");
-            isBeingRobbed = false;
+            gettingRobbed = false;
         } else if (name.contains("ttc_employee_card") || name.contains("presto")) {
             System.out.println("You try to defend yourself with a " + weapon.getName() + "...");
             System.out.println("The crackhead laughs. EUGUUUGHUHUUHGHG. 'Is that a joke?'");
@@ -668,7 +668,7 @@ public class CommandParser {
                 }
             }
             player.addMoney(-5.0);
-            isBeingRobbed = false;
+            gettingRobbed = false;
         } else {
             System.out.println("That item isn't very effective as a weapon.");
 

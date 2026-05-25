@@ -5,7 +5,7 @@ import javax.sound.sampled.Clip;
 
 public class SoundManager {
 
-    public static void playDoorChimeBlocking() {
+    public static void playChime() {
         try {
             File file = new File("sounds/door_chime.wav");
             AudioInputStream audio = AudioSystem.getAudioInputStream(file);
@@ -151,6 +151,7 @@ public class SoundManager {
         playBlocking("sounds/line5_restored.wav");
     }
 
+     
     public static void playServiceDisruptionChime() {
         playBlocking("sounds/service.wav");
     }
