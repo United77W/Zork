@@ -120,6 +120,9 @@ public class SoundManager {
             case "Humber College Station":
                 playBlocking("sounds/humbercollege.wav");
                 break;
+            case "Avenue Station":
+                playBlocking("sounds/avenue.wav");
+                break;
             default:
                 break;
         }

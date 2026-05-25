@@ -35,6 +35,13 @@ public class CommandParser {
             "Don Valley Station",
             "Kennedy Station");
 
+    private Set<String> bus25BStops = Set.of(
+            "Don Mills Station",
+            "Don Valley Station",
+            "Broadview Station");
+
+    private static final String BUS_25B = "Bus 25B";
+
     private Map<String, Set<String>> disruptionShuttles = new HashMap<>();
 
     private Map<String, Set<String>> shuttleBuses = Map.of(
@@ -107,12 +114,23 @@ public class CommandParser {
                             usedLine = nextLines.get(0);
                         }
 
+                        boolean isBus = isBusLine(usedLine);
+
+                        if (isBus) {
+                            String current = player.getCurrentRoomId();
+
+                            if (!bus25BStops.contains(current) || !bus25BStops.contains(nextRoomId)) {
+                                System.out.println("The 25B bus doesn't go there.");
+                                return;
+                            }
+                        }
+
                         if (nextRoomId.equals("Power Station") && !player.hasItem("TTC_Employee_Card")) {
                             System.out.println("You cannot enter this room. Employee Only.");
                             return;
                         }
 
-                        if (Line5Down) {
+                        if (!isBus && Line5Down) {
                             boolean currentIsLine5 = Line5Stations.contains(player.getCurrentRoomId());
                             boolean nextIsLine5 = Line5Stations.contains(nextRoomId);
 
@@ -125,7 +143,7 @@ public class CommandParser {
 
                         }
 
-                        if (nextRoomId.equals("Finch West Station")) {
+                        if (!isBus && nextRoomId.equals("Finch West Station")) {
 
                             boolean goingToLine6 = "Line 6".equals(usedLine);
 
@@ -146,9 +164,8 @@ public class CommandParser {
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
-                                    
 
-                                    if (soundEnabled){
+                                    if (soundEnabled) {
                                         SoundManager.playLine6DelayAnnouncement();
                                     }
 
@@ -168,13 +185,13 @@ public class CommandParser {
                             return;
                         }
 
-                        if (Math.random() < 0.10) {
+                        if (!isBus && Math.random() < 0.10) {
                             System.out.println("Service Advisory!");
                             System.out.println("There is no subway service between " + from + " and " + to
                                     + " due to an emergency alarm activation. Shuttle buses are operating!");
-                              if (soundEnabled){      
-                            SoundManager.playServiceDisruptionChime();
-                              }
+                            if (soundEnabled) {
+                                SoundManager.playServiceDisruptionChime();
+                            }
 
                             closedParts.add(parts);
 
@@ -191,20 +208,39 @@ public class CommandParser {
 
                         double fare = 3.30;
 
-                        if (player.hasItem("TTC_Employee_Card")) {
-                            System.out.println("You used your employee card.");
-                        } else if (evadingFare) {
-                            System.out.println("You slipped through without paying...");
+                        if (isBus) {
+                            System.out.println("You board the 25B Don Mills bus");
+
+                            if (!evadingFare) {
+                                if (!player.hasItem("PRESTO")) {
+                                    System.out.println("You need a PRESTO card to board the bus.");
+                                    return;
+                                }
+                                if (!player.deductFare(fare)) {
+                                    System.out.println("Declined. Insufficient Balance.");
+                                    return;
+                                }
+                                System.out.println("You tapped your PRESTO card ($" + fare + ")");
+                            } else {
+                                System.out.println("You snuck onto the bus without paying");
+                            }
+
                         } else {
-                            if (!player.hasItem("PRESTO")) {
-                                System.out.println("You need a PRESTO card to travel on the TTC.");
-                                return;
+                            if (player.hasItem("TTC_Employee_Card")) {
+                                System.out.println("You used your employee card.");
+                            } else if (evadingFare) {
+                                System.out.println("You slipped through without paying...");
+                            } else {
+                                if (!player.hasItem("PRESTO")) {
+                                    System.out.println("You need a PRESTO card to travel on the TTC.");
+                                    return;
+                                }
+                                if (!player.deductFare(fare)) {
+                                    System.out.println("Declined. Insufficient Balance.");
+                                    return;
+                                }
+                                System.out.println("You used your PRESTO CARD ($" + fare + ")");
                             }
-                            if (!player.deductFare(fare)) {
-                                System.out.println("Declined. Insufficient Balance.");
-                                return;
-                            }
-                            System.out.println("You used your PRESTO CARD ($" + fare + ")");
                         }
 
                         player.setCurrentRoomId(nextRoomId);
@@ -222,12 +258,15 @@ public class CommandParser {
 
                         player.setCurrentLine(usedLine);
 
-                        System.out.println("Please stand clear of the doors");
+                        if (isBus) {
+                            System.out.println("Please exit through the rear doors");
+                        } else {
+                            System.out.println("Please stand clear of the doors");
+                        }
 
-                        if (soundEnabled){
-                        SoundManager.playDoorChimeBlocking();
-
-                        SoundManager.playAnnouncement(nextRoomId, player.getCurrentLine());
+                        if (!isBus && soundEnabled) {
+                            SoundManager.playDoorChimeBlocking();
+                            SoundManager.playAnnouncement(nextRoomId, player.getCurrentLine());
                         }
                         System.out.println("Arriving at " + nextRoomId);
 
@@ -450,6 +489,15 @@ public class CommandParser {
                     System.out.println("Use: sound on / sound off");
                 }
                 break;
+            case "fix":
+                if (words.length < 2) {
+                    System.out.println("Fix what?");
+                } else if (words[1].equalsIgnoreCase("generator")) {
+                    handleFixGenerator(player, rooms);
+                } else {
+                    System.out.println("You can't fix that.");
+                }
+                break;
 
             case "evade":
                 evadingFare = true;
@@ -546,6 +594,48 @@ public class CommandParser {
         System.out.println("No fare charged (shuttle buses).");
     }
 
+    private void handleFixGenerator(Player player, Map<String, Room> rooms) {
+        Room room = rooms.get(player.getCurrentRoomId());
+
+        if (!powerStations.contains(room.getId())) {
+            System.out.println("There is no generator to fix here.");
+            return;
+        }
+
+        if (room.isPuzzleSolved()) {
+            System.out.println("This station is already repaired.");
+            return;
+        }
+
+        boolean hasTool = false;
+
+        for (Item item : player.getInventory()) {
+            String name = item.getName().toLowerCase();
+            if (name.equals("screwdriver") || name.equals("crowbar")) {
+                hasTool = true;
+                break;
+            }
+        }
+
+        if (!hasTool) {
+            System.out.println("You need a tool like a screwdriver or crowbar.");
+            return;
+        }
+
+        System.out.println("You open the generator panel...");
+        System.out.println("You repair the power system!");
+
+        room.solvePuzzle();
+        player.repairPowerStation();
+
+        System.out.println("Power stations fixed: " +
+                player.getPowerStationsRepaired() + "/4");
+    }
+
+    private boolean isBusLine(String line) {
+        return BUS_25B.equalsIgnoreCase(line);
+    }
+
     private void handleAttack(String itemName, Player player) {
         Item weapon = null;
         for (Item i : player.getInventory()) {
@@ -610,11 +700,11 @@ public class CommandParser {
     }
 
     private void playOccasionalAnnouncement(String stationId, String line) {
-        if (Math.random() < 0.3) {
-            System.out.println("Attention Customers!");
+        if (Math.random() < 0.5) {
+            System.out.println("Please Stand Clear Of The Yellow Line!");
 
             if (soundEnabled) {
-                SoundManager.playSound("sounds/generic_announcement.wav");
+                SoundManager.playSound("sounds/generic.wav");
             }
         }
     }
