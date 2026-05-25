@@ -393,7 +393,7 @@ public class CommandParser {
 
                     if (powerStations.contains(room.getId())) {
 
-                        if (room.isPuzzleSolved()) {
+                        if (room.isStationFixed()) {
                             System.out.println("This station is already repaired.");
                             return;
                         }
@@ -404,11 +404,11 @@ public class CommandParser {
                             System.out.println("You open the generator panel...");
                             System.out.println("You repair the power system!");
 
-                            room.solvePuzzle();
-                            player.fixPStation();
+                            room.fixStation();
+                            player.fixStation();
 
                             System.out.println("Power stations fixed: " +
-                                    player.getPStationsFixed() + "/4");
+                                    player.getStationsFixed() + "/4");
 
                             return;
                         } else {
@@ -602,7 +602,7 @@ public class CommandParser {
             return;
         }
 
-        if (room.isPuzzleSolved()) {
+        if (room.isStationFixed()) {
             System.out.println("This station is already repaired.");
             return;
         }
@@ -625,11 +625,11 @@ public class CommandParser {
         System.out.println("You open the generator panel...");
         System.out.println("You repair the power system!");
 
-        room.solvePuzzle();
-        player.fixPStation();
+        room.fixStation();
+        player.fixStation();
 
         System.out.println("Power stations fixed: " +
-                player.getPStationsFixed() + "/4");
+                player.getStationsFixed() + "/4");
     }
 
     private boolean isBusLine(String line) {

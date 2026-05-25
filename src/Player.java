@@ -13,7 +13,7 @@ public class Player {
     private List<String> bustedThisTime = new ArrayList<>();
     // anything to do wtih busting is busking like music playing it js sounded uh better...
 
-    private int pStationsFixed;
+    private int stationsFixed;
 
     private boolean Line5Fixed = false;
 
@@ -23,7 +23,7 @@ public class Player {
         this.prestoBalance = 5.00;
         this.cash = 5.00;
 
-        this.pStationsFixed = 0;
+        this.stationsFixed = 0;
     }
 
     public String getCurrentRoomId() {
@@ -72,12 +72,12 @@ public class Player {
         return false;
     }
 
-    public int getPStationsFixed() {
-        return pStationsFixed;
+    public int getStationsFixed() {
+        return stationsFixed;
     }
 
-    public void fixPStation() {
-        pStationsFixed++;
+    public void fixStation() {
+        stationsFixed++;
     }
 
     public boolean isLine5Fixed() {

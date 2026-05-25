@@ -9,7 +9,7 @@ public class Room {
     private List<Item> items;
     private List<String> lines;
 
-    private boolean puzzleSolved = false;
+    private boolean stationFixed = false;
 
     public Room(String id, String name, String description, Map<String, String> exits, List<Item> items,
             List<String> lines) {
@@ -76,12 +76,12 @@ public class Room {
         return sb.toString();
     }
 
-    public boolean isPuzzleSolved() {
-        return puzzleSolved;
+    public boolean isStationFixed() {
+        return stationFixed;
     }
 
-    public void solvePuzzle() {
-        puzzleSolved = true;
+    public void fixStation() {
+        stationFixed = true;
     }
 
     public List<String> getLines() {

@@ -40,7 +40,7 @@ public class Game {
             String input = scanner.nextLine();
             commandParser.parse(input, player, rooms);
 
-            if (player.getPStationsFixed() >= 4) {
+            if (player.getStationsFixed() >= 4) {
                 player.setLine5Fixed(true);
                 commandParser.setLine5Down(false);
                 System.out.println("LINE 5 RESTORED");
