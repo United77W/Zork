@@ -216,7 +216,7 @@ public class CommandParser {
                                     System.out.println("You need a PRESTO card to board the bus.");
                                     return;
                                 }
-                                if (!player.deductFare(fare)) {
+                                if (!player.minusFare(fare)) {
                                     System.out.println("Declined. Insufficient Balance.");
                                     return;
                                 }
@@ -235,7 +235,7 @@ public class CommandParser {
                                     System.out.println("You need a PRESTO card to travel on the TTC.");
                                     return;
                                 }
-                                if (!player.deductFare(fare)) {
+                                if (!player.minusFare(fare)) {
                                     System.out.println("Declined. Insufficient Balance.");
                                     return;
                                 }
@@ -247,14 +247,14 @@ public class CommandParser {
 
                         playOccasionalAnnouncement(nextRoomId, player.getCurrentLine());
 
-                        if (!player.hasDiscovered(nextRoomId)) {
+                        if (!player.hasDih(nextRoomId)) {
                             System.out.println("NEW STATION DISCOVERED!");
                             System.out.println("+$10");
                             player.addMoney(10.0);
-                            player.discoverStation(nextRoomId);
+                            player.dihStation(nextRoomId);
                         }
 
-                        player.resetBusking();
+                        player.resetBusting();
 
                         player.setCurrentLine(usedLine);
 
@@ -265,7 +265,7 @@ public class CommandParser {
                         }
 
                         if (!isBus && soundEnabled) {
-                            SoundManager.playDoorChimeBlocking();
+                            SoundManager.playChime();
                             SoundManager.playAnnouncement(nextRoomId, player.getCurrentLine());
                         }
                         System.out.println("Arriving at " + nextRoomId);
@@ -405,10 +405,10 @@ public class CommandParser {
                             System.out.println("You repair the power system!");
 
                             room.solvePuzzle();
-                            player.repairPowerStation();
+                            player.fixPStation();
 
                             System.out.println("Power stations fixed: " +
-                                    player.getPowerStationsRepaired() + "/4");
+                                    player.getPStationsFixed() + "/4");
 
                             return;
                         } else {
@@ -463,14 +463,14 @@ public class CommandParser {
             case "busk":
                 String currentStation = player.getCurrentRoomId();
 
-                if (player.hasBuskedHere(currentStation)) {
+                if (player.hasBustedHere(currentStation)) {
                     System.out.println("You already busked here this visit.");
                 } else {
                     System.out.println("You start busking...");
                     System.out.println("People toss you some money!");
                     System.out.println("+$5");
                     player.addMoney(5.0);
-                    player.markBusked(currentStation);
+                    player.markBusted(currentStation);
                 }
                 break;
             case "sound":
@@ -575,14 +575,14 @@ public class CommandParser {
 
         player.setCurrentRoomId(destination);
 
-        if (!player.hasDiscovered(destination)) {
+        if (!player.hasDih(destination)) {
             System.out.println("NEW STATION DISCOVERED!");
             System.out.println("+$10");
             player.addMoney(10.0);
-            player.discoverStation(destination);
+            player.dihStation(destination);
         }
 
-        player.resetBusking();
+        player.resetBusting();
 
         System.out.println("You arrived at " + destination + ".");
 
@@ -626,10 +626,10 @@ public class CommandParser {
         System.out.println("You repair the power system!");
 
         room.solvePuzzle();
-        player.repairPowerStation();
+        player.fixPStation();
 
         System.out.println("Power stations fixed: " +
-                player.getPowerStationsRepaired() + "/4");
+                player.getPStationsFixed() + "/4");
     }
 
     private boolean isBusLine(String line) {
