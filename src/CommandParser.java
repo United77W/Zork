@@ -417,7 +417,7 @@ public class CommandParser {
                         }
                     }
 
-                    handleUseItem(itemToUse, player, rooms);
+                    useItem(itemToUse, player, rooms);
                 }
                 break;
 
@@ -675,7 +675,7 @@ public class CommandParser {
         }
     }
 
-    private void handleUseItem(Item item, Player player, Map<String, Room> rooms) {
+    private void useItem(Item item, Player player, Map<String, Room> rooms) {
         String roomId = player.getCurrentRoomId();
         switch (item.getName().toLowerCase()) {
             case "screwdriver":

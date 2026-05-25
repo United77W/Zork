@@ -15,7 +15,7 @@ public class Player {
 
     private int pStationsFixed;
 
-    private boolean Line5Restored = false;
+    private boolean Line5Fixed = false;
 
     public Player(String startingRoomId) {
         this.currentRoomId = startingRoomId;
@@ -80,12 +80,12 @@ public class Player {
         pStationsFixed++;
     }
 
-    public boolean isLine5Restored() {
-        return Line5Restored;
+    public boolean isLine5Fixed() {
+        return Line5Fixed;
     }
 
-    public void setLine5Restored(boolean value) {
-        Line5Restored = value;
+    public void setLine5Fixed(boolean value) {
+        Line5Fixed = value;
     }
 
     public String getCurrentLine() {

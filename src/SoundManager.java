@@ -147,7 +147,7 @@ public class SoundManager {
         }
     }
 
-    public static void playLine5RestoredAnnouncement() {
+    public static void playLine5FixedSound() {
         playBlocking("sounds/line5_restored.wav");
     }
 
