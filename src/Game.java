@@ -40,13 +40,13 @@ public class Game {
             String input = scanner.nextLine();
             commandParser.parse(input, player, rooms);
 
-            if (player.getPowerStationsRepaired() >= 4) {
-                player.setLine5Restored(true);
+            if (player.getPStationsFixed() >= 4) {
+                player.setLine5Fixed(true);
                 commandParser.setLine5Down(false);
                 System.out.println("LINE 5 RESTORED");
                 System.out.println("You have successfully fixed all power stations!");
                 System.out.println("The slow Shuttle Buses are no longer needed");
-                SoundManager.playLine5RestoredAnnouncement();
+                SoundManager.playLine5FixedSound();
 
             }
         }

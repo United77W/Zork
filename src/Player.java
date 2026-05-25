@@ -9,10 +9,11 @@ public class Player {
     private double prestoBalance;
     private double cash;
     private String currentLine;
-    private List<String> discoveredStations = new ArrayList<>();
-    private List<String> buskedThisVisit = new ArrayList<>();
+    private List<String> dihStations = new ArrayList<>();
+    private List<String> bustedThisTime = new ArrayList<>();
+    // anything to do wtih busting is busking like music playing it js sounded uh better...
 
-    private int powerStationsRepaired;
+    private int pStationsFixed;
 
     private boolean Line5Restored = false;
 
@@ -22,7 +23,7 @@ public class Player {
         this.prestoBalance = 5.00;
         this.cash = 5.00;
 
-        this.powerStationsRepaired = 0;
+        this.pStationsFixed = 0;
     }
 
     public String getCurrentRoomId() {
@@ -54,7 +55,7 @@ public class Player {
         prestoBalance += amount;
     }
 
-    public boolean deductFare(double amount) {
+    public boolean minusFare(double amount) {
         if (prestoBalance >= amount) {
             prestoBalance -= amount;
             return true;
@@ -71,12 +72,12 @@ public class Player {
         return false;
     }
 
-    public int getPowerStationsRepaired() {
-        return powerStationsRepaired;
+    public int getPStationsFixed() {
+        return pStationsFixed;
     }
 
-    public void repairPowerStation() {
-        powerStationsRepaired++;
+    public void fixPStation() {
+        pStationsFixed++;
     }
 
     public boolean isLine5Restored() {
@@ -95,29 +96,29 @@ public class Player {
         this.currentLine = line;
     }
 
-    public boolean hasDiscovered(String station) {
-        return discoveredStations.contains(station);
+    public boolean hasDih(String station) {
+        return dihStations.contains(station);
     }
 
-    public void discoverStation(String station) {
-        if (!discoveredStations.contains(station)) {
-            discoveredStations.add(station);
+    public void dihStation(String station) {
+        if (!dihStations.contains(station)) {
+            dihStations.add(station);
         }
     }
 
-    public boolean hasBuskedHere(String station) {
-        return buskedThisVisit.contains(station);
+    public boolean hasBustedHere(String station) {
+        return bustedThisTime.contains(station);
     }
 
    
 
-    public void markBusked(String station) {
-    if (!buskedThisVisit.contains(station)) {
-        buskedThisVisit.add(station);
+    public void markBusted(String station) {
+    if (!bustedThisTime.contains(station)) {
+        bustedThisTime.add(station);
     }
 }
 
-    public void resetBusking() {
-        buskedThisVisit.clear();
+    public void resetBusting() {
+        bustedThisTime.clear();
     }
 }
