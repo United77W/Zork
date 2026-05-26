@@ -154,7 +154,7 @@ public class CommandParser {
 
                             if (goingToLine6 || transferringToLine6) {
 
-                                if (Math.random() < 0.25) {
+                                if (Math.random() < 0.05) {
                                     System.out.println("Attention Customers!");
                                     System.out.println("There is a delay at Finch West Station.");
 
@@ -185,7 +185,7 @@ public class CommandParser {
                             return;
                         }
 
-                        if (!isBus && Math.random() < 0.10) {
+                        if (!isBus && Math.random() < 0.05) {
                             System.out.println("Service Advisory!");
                             System.out.println("There is no subway service between " + from + " and " + to
                                     + " due to an emergency alarm activation. Shuttle buses are operating!");
