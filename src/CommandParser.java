@@ -457,7 +457,7 @@ public class CommandParser {
                 break;
             case "help":
                 System.out.println(
-                        "Commands: go [station], evade, look, take [item], drop [item], use [item], inventory, attack [item], run, shuttle, help");
+                        "Commands: go [station], evade, look, take [item], drop [item], use [item], inventory, attack [item], run, shuttle, help, sound on, sound off [turns off all sounds and speeds up transitions]");
                 break;
 
             case "busk":
