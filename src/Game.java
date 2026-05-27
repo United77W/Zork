@@ -30,6 +30,8 @@ public class Game {
                 "Fix the system. Restore the power. Open Line 5.\r\n" + //
                 "\r\n" + //
                 "The city is counting on you.\r\n" + //
+                "\r\n" + //
+                "TYPE HELP TO GET STARTED.\r\n" + //
                 "");
         Room currentRoom = rooms.get(player.getCurrentRoomId());
         System.out.println(currentRoom.getLongDescription());

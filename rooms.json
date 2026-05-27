@@ -1,7 +1,7 @@
 {
   "Union Station": {
     "name": "Union Station",
-    "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest.",
+    "description": "You are in Union Station, the busiest transit hub in Canada, connecting GO Transit, VIA Rail, and the TTC. The crowd moves endlessly around you. TMU station is NorthEast and Museum station is NorthWest. PLEASE TAKE PRESTO if you haven't already",
     "lines": ["Line 1"],
     "exits": {
       "northeast": "TMU Station",
@@ -49,7 +49,7 @@
   },
   "Eglinton Station": {
     "name": "Eglinton Station",
-    "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis.",
+    "description": "You are currently in Toronto's newest subway station with connection to Line 5 Eglinton. You can go east to Kennedy and west to Mount Dennis. If you haven't repaired this station yet please fix it by typing [use screwdriver].",
       "lines": ["Line 1", "Line 5"],
     "exits": {
       "south": "Bloor-Yonge Station",
@@ -193,7 +193,7 @@
   },
   "Don Valley Station": {
     "name": "Don Valley Station",
-    "description": "You are in Don Valley Station, the station is dimly lit and the air is filled with a faint hum of machinery.",
+    "description": "You are in Don Valley Station, the station is dimly lit and the air is filled with a faint hum of machinery. If you haven't repaired this station yet please fix it by typing [use screwdriver]",
     "lines": ["Line 5", "Bus 25B"],
     "exits": {
       "east": "Kennedy Station",
@@ -221,7 +221,7 @@
   },
   "Mount Dennis Station": {
     "name": "Mount Dennis Station",
-    "description": "You are in Mount Dennis Station, the station is a hub for commuters heading to the airport and beyond Toronto's border.",
+    "description": "You are in Mount Dennis Station, the station is a hub for commuters heading to the airport and beyond Toronto's border. If you haven't repaired this station yet please fix it by typing [use screwdriver]",
     "lines": ["Line 5"],
     "exits": {
       "east": "Cedarvale Station"
@@ -275,7 +275,7 @@
   },
   "Power Station": {
     "name": "Power Station",
-    "description": "You have ended up at a restricted zone, you a power station in front of you. It looks like it requires some works on it.",
+    "description": "You have ended up at a restricted zone, you a power station in front of you. It looks like it requires some works on it. If you haven't repaired this station yet please fix it by typing [use screwdriver]",
     "exits": {
       "west": "Kennedy Station"
     }

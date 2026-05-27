@@ -46,9 +46,9 @@ public class CommandParser {
 
     private Map<String, Set<String>> shuttleBuses = Map.of(
             "Mount Dennis Station", Set.of("Cedarvale Station"),
-            "Cedarvale Station", Set.of("Mount Dennis Station", "Avenue Station"),
-            "Avenue Station", Set.of("Cedarvale Station", "Eglinton Station"),
-            "Eglinton Station", Set.of("Avenue Station", "Don Valley Station"),
+            "Cedarvale Station", Set.of("Mount Dennis Station", "Eglinton Station"),
+            //"Avenue Station", Set.of("Cedarvale Station", "Eglinton Station"),
+            "Eglinton Station", Set.of("Cedarvale Station", "Don Valley Station"),
             "Don Valley Station", Set.of("Eglinton Station", "Kennedy Station"),
             "Kennedy Station", Set.of("Don Valley Station"));
 
@@ -292,7 +292,7 @@ public class CommandParser {
                             if (player.hasItem("TTC_Employee_Card")) {
                                 System.out.println("You have pretended to be a TTC employee.");
                             } else if (evadingFare) {
-                                if (Math.random() < 0.6) {
+                                if (Math.random() < 1) {
                                     System.out.println("You were caught evading fare! Fined $100.");
                                     player.addMoney(-100.0);
                                 } else {
@@ -457,7 +457,12 @@ public class CommandParser {
                 break;
             case "help":
                 System.out.println(
-                        "Commands: go [station], evade, look, take [item], drop [item], use [item], inventory, attack [item], run, shuttle, help, sound on, sound off [turns off all sounds and speeds up transitions]");
+                        "Commands: explain [help command but in more depth], go [station], evade, look, take [item], drop [item], use [item], inventory, attack [item], run, shuttle [station], busk, sound on, sound off [turns off all sounds and speeds up transitions]");
+                break;
+
+            case "explain":
+                System.out.println(
+                        "Commands: go [if command isn't working type just the start of the station e.g. [bloor] instead of [bloor yonge]], evade, look, take [item], drop [item], use [item], inventory, attack [item], run, shuttle [station], help, sound on, sound off [turns off all sounds and speeds up transitions]");
                 break;
 
             case "busk":
