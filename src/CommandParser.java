@@ -30,7 +30,7 @@ public class CommandParser {
     private Set<String> Line5Stations = Set.of(
             "Mount Dennis Station",
             "Cedarvale Station",
-            "Avenue Station",
+           // "Avenue Station",
             "Eglinton Station",
             "Don Valley Station",
             "Kennedy Station");
